@@ -1,5 +1,5 @@
 body {
-	background-color: #fff;
+	background-color: #f7f7f7;
 	color: #777;
 	font: normal 15px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
@@ -8,10 +8,12 @@ p {
 	line-height: 20px;
 	margin-bottom: 20px;
 }
+a:focus, a:hover{text-decoration: none;}
 
 h1 {
-	font-family: 'Crete Round', serif;
+	/*font-family: 'Crete Round', serif;
 	font-weight: bold;
+    font-family: 'Open Sans', sans-serif;*/
 	color: #444;
 	font-size: 45px;
 	margin-bottom: 20px;
@@ -81,7 +83,7 @@ small {
 img{max-width:100%; height: auto; border:0; outline:none;}
 /*======================= Section 1: Header ======================== */
 header {
-	height: 120px;
+	/*eight: 120px;*/
     background-color: #f8fafa;
 }
 
@@ -115,7 +117,7 @@ header nav ul li a {
 /* =================== Section 2: Hero Image ====================== */
 #hero-image {
 	height: 580px;
-	padding-top: 1px;
+	/*padding-top: 1px;*/
 	background: #e8eced url('../images/hero.jpg') no-repeat center;
 }
 
@@ -242,7 +244,7 @@ article h4 {
 .button-2 {
 	display: block;
 	margin: 0 auto;
-	border: 2px solid #02b8dd;
+	border: 1px solid #02b8dd;
 	color: #02b8dd;
 	border-radius: 3px;
 	width: 180px;
@@ -258,8 +260,8 @@ article h4 {
 
 /* ==================== Section 7: Footer ============================= */
 footer {
-	padding: 60px 0;
-	background-color: #f8fafa;
+	padding: 20px 0;
+	background-color: #f0f0f0;
 }
 
 #footer-info {
@@ -267,7 +269,25 @@ footer {
 	float: left;
 	margin-top: 10px;
 }
+/*
+footer h5 {
+    color: #E1E1E1;
+}
 
+footer p {
+    color: #E1E1E1;
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #02b8dd;
+    font-size: 12px;
+}
+
+footer a:hover {
+    color: #E1E1E1;
+}
+*/
 #footer-links {
 	width: 520px;
 	float: right;
