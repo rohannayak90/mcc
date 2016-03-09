@@ -78,7 +78,7 @@ small {
 	padding: 0 10px;
 	width: 940px;
 }*/
-
+img{max-width:100%; height: auto; border:0; outline:none;}
 /*======================= Section 1: Header ======================== */
 header {
 	height: 120px;
@@ -144,14 +144,15 @@ header nav ul li a {
 /* ========================== Section 3: Features ======================== */
 #features ul {
 	margin: 80px 0;
+	text-align: center;
 }
 
 #features ul li {
 	width: 300px;
-	padding-top: 140px;
-	float: left;
-	margin-right: 10px;
-	text-align: center;
+    padding-top: 140px;
+    margin-right: 10px;
+    text-align: center;
+    display: inline-block;
 }
 
 #features ul li.feature-1 {
@@ -190,21 +191,21 @@ header nav ul li a {
 }
 
 #secondary-content article {
-	width: 460px;
+	/*width: 460px;*/
 	height: 270px;
-	float: left;
-	background-color: #f5f5f5;
+	/*float: left;*/
+	position:relative;
+	    background-repeat: no-repeat;
 }
 
-#secondary-content article:first-child {
-	margin-right: 20px;
-}
+#secondary-content article img{width:100%;}
 
 #secondary-content article .overlay {
 	background: rgba(255, 255, 255, .95);
-	height: 230px;
 	width: 190px;
 	padding: 20px;
+	position:absolute;
+	top:0; left:22px;
 }
 
 article h4 {

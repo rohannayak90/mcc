@@ -15,11 +15,11 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis turpis ac libero interdum, id fringilla purus feugiat. Etiam malesuada mattis nibh at bibendum.</p>
                     </li>
                     <li class="feature-2">
-                        <h4>Business Cards</h4>
+                        <h4>Business</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis turpis ac libero interdum, id fringilla purus feugiat. Etiam malesuada mattis nibh at bibendum.</p>
                     </li>
                     <li class="feature-3">
-                        <h4>Marketing Materials</h4>
+                        <h4>Materials</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis turpis ac libero interdum, id fringilla purus feugiat. Etiam malesuada mattis nibh at bibendum.</p>
                     </li>
                     <div class="clear"></div>
@@ -32,27 +32,31 @@
                 <article>
                     <h3>Featured Content</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt. Nam ultricies odio ac neque suscipit volutpat. Ut dictum adipiscing felis sed malesuada. Integer porta sem nec nibh hendrerit imperdiet. </p>
-                    <a href="#"><img src="images/video-placeholder.jpg" alt="video placeholder" /></a>
+                    <a href="javascript:void(0)"><img src="images/video-placeholder.jpg" alt="video placeholder" /></a>
                 </article>
             </div>
         </div>
         
         <div id="secondary-content">
             <div class="container">
-                <article style="background-image: url('images/article-image-1.jpg');">
-                    <div class="overlay">
-                        <h4>Secondary Content</h4>
-                        <p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt nam.</small></p>
-                        <a href="#" class="more-link">View more</a>
-                    </div>
-                </article>
-                <article style="background-image: url('images/article-image-2.jpg');">
-                    <div class="overlay">
-                        <h4>Secondary Content</h4>
-                        <p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt nam.</small></p>
-                        <a href="#" class="more-link">View more</a>
-                    </div>
-                </article>
+				<div class="row">
+					<article class="col-sm-6">
+						<img src="images/article-image-1.jpg" alt="" />
+						<div class="overlay">
+							<h4>Secondary Content</h4>
+							<p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt nam.</small></p>
+							<a href="javascript:void(0)" class="more-link">View more</a>
+						</div>
+					</article>
+					<article class="col-sm-6">
+						<img src="images/article-image-2.jpg" alt="" />
+						<div class="overlay">
+							<h4>Secondary Content</h4>
+							<p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt nam.</small></p>
+							<a href="javascript:void(0)" class="more-link">View more</a>
+						</div>
+					</article>
+				</div>
                 <div class="clear"></div>
             </div>
         </div>
