@@ -10,7 +10,12 @@
  
     <body>
         <header>
-            <div id="header-main">
+            <div id="hero-image">        
+                <div class="container">
+                    <h2>Set Your <strong>design</strong><br/>apart.</h2>
+                    <a href="flash/customizer.php" class="button-1">Get Started</a>
+                </div>
+            </div>
             <div class="container">
                 <h1>Creative</h1>
                 <nav>
@@ -25,7 +30,7 @@
             </div>
             
            
-        <?php
+            <?php
             $homepage = "/mcc/index.php";
             $currentpage = $_SERVER['REQUEST_URI'];
 
@@ -38,9 +43,9 @@
                         </div>
                     </div>';
             }
-        ?>
-                </div>
-             <link rel="stylesheet" type="text/css" href="css/reset.css">
+            ?>
+            
+            <link rel="stylesheet" type="text/css" href="css/reset.css">
             
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
