@@ -4,7 +4,7 @@
         
         <div id="features">
             <div class="container">
-                <article class="row figure--left example clear" id="yui_3_17_2_1_1457519344342_178">
+                <!--<article class="row figure--left example clear" id="yui_3_17_2_1_1457519344342_178">
                     <div class="container clear">
                         <figure class="should-be-pushed-left">
                             <div class="device-wrapper iphone-render">
@@ -30,8 +30,8 @@
                             </div>
                         </header>
                     </div>
-                </article>
-                <!--<ul>
+                </article>-->
+                <ul>
                     <li class="feature-1">
                         <h4>Easy to Edit</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis turpis ac libero interdum, id fringilla purus feugiat. Etiam malesuada mattis nibh at bibendum.</p>
@@ -45,7 +45,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis turpis ac libero interdum, id fringilla purus feugiat. Etiam malesuada mattis nibh at bibendum.</p>
                     </li>
                     <div class="clear"></div>
-                </ul>-->
+                </ul>
             </div>
         </div>
 	

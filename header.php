@@ -10,13 +10,7 @@
  
     <body>
         <header>
-            <div id="hero-image">        
-                <div class="container">
-                    <h2>Set Your <strong>design</strong><br/>apart.</h2>
-                    <a href="flash/customizer.php" class="button-1">Get Started</a>
-                </div>
-            </div>
-            <div class="container">
+            <div class="container" style="clear:none">
                 <h1>Creative</h1>
                 <nav>
                     <ul>
@@ -31,22 +25,18 @@
             
            
             <?php
-            $homepage = "/mcc/index.php";
+            $server_folder = "/mcc/";
+            $homepage = "index.php";
             $currentpage = $_SERVER['REQUEST_URI'];
 
-            if ($homepage==$currentpage)
+            if ($currentpage == $server_folder.$homepage || $currentpage == $server_folder)
             {
-                echo '<div id="hero-image">        
-                        <div class="container">
-                            <h2>Set Your <strong>design</strong><br/>apart.</h2>
-                            <a href="flash/customizer.php" class="button-1">Get Started</a>
-                        </div>
-                    </div>';
+                include('slideshow.php');
             }
             ?>
             
             <link rel="stylesheet" type="text/css" href="css/reset.css">
-            
+            <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
             <!-- Optional theme
