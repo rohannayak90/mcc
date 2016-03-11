@@ -10,29 +10,30 @@
  
     <body>
         <header>
-            <div class="container" style="clear:none">
-                <h1>Creative</h1>
-                <nav>
-                    <ul>
-				        <li><a href="index.php">Home</a></li>
-				        <li><a href="register.php">Register</a></li>
-				        <li><a href="contact.php">Contact</a></li>
-				        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="flash/customizer.php">Customizer</a></li>
-			         </ul>
-                </nav>
+            <div class="container top-area">
+
+                    <h1>Creative</h1>
+                    <nav>
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="register.php">Register</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <li><a href="blog.php">Blog</a></li>
+                            <li><a href="flash/customizer.php">Customizer</a></li>
+                         </ul>
+                    </nav>
+
             </div>
-            
            
             <?php
-            $server_folder = "/mcc/";
-            $homepage = "index.php";
-            $currentpage = $_SERVER['REQUEST_URI'];
+                $server_folder = "/mcc/";
+                $homepage = "index.php";
+                $currentpage = $_SERVER['REQUEST_URI'];
 
-            if ($currentpage == $server_folder.$homepage || $currentpage == $server_folder)
-            {
-                include('slideshow.php');
-            }
+                if ($currentpage == $server_folder.$homepage || $currentpage == $server_folder)
+                {
+                    include('slideshow.php');
+                }
             ?>
             
             <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -45,5 +46,14 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
                         
             <link rel="stylesheet" type="text/css" href="css/style.css">
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#hero-image').css({'height':($(window).height())+'px'});
+                    $('#features').css({'margin-top':($(window).height())+'px'});
+                    $('#hero-image h2').css({'margin-top':($(window).height()) * 0.4+'px'});
+                });
+                
+            </script>
+                    
         </header>
         
