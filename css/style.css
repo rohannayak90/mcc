@@ -6,7 +6,7 @@ body {
 
 p {
 	line-height: 20px;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 }
 a:focus, a:hover{text-decoration: none;}
 
@@ -285,12 +285,12 @@ article h4 {
 
 .button-2:hover {
 	background-color: #02b8dd;
-	color: #fff;
+	color: #fff;   
 }
 
 /* ==================== Section 7: Footer ============================= */
 footer {
-	padding: 20px 0;
+	/*padding: 20px 0;*/
 	background-color: #f0f0f0;
 }
 
@@ -331,4 +331,12 @@ footer a:hover {
 
 #footer-links ul li {
 	margin: 10px 0;
+}
+
+#footer-menu {
+    float: right;  
+    margin-top: 10px;
+}
+#footer-menu a {  
+    margin-left: 20px;     
 }

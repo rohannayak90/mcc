@@ -49,7 +49,7 @@
             <script type="text/javascript">
                 $(document).ready(function(){
                     $('#hero-image').css({'height':($(window).height())+'px'});
-                    $('#features').css({'margin-top':($(window).height())+'px'});
+                    $('#below-header').css({'margin-top':($(window).height())+'px'});
                     $('#hero-image h2').css({'margin-top':($(window).height()) * 0.4+'px'});
                 });
                 
