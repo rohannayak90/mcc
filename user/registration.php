@@ -10,13 +10,9 @@ $form_token = md5( uniqid('auth', true) );
 $_SESSION['form_token'] = $form_token;
 ?>
 
-<html>
-<head>
-<title>PHPRO Login</title>
-</head>
-
-<body>
-<h2>Add user</h2>
+<?php include('../header.php'); ?>
+<div class="container">
+<h4>Add user</h4>
 <form action="registration_submit.php" method="post">
 <fieldset>
 <p>
@@ -29,9 +25,10 @@ $_SESSION['form_token'] = $form_token;
 </p>
 <p>
 <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-<input type="submit" value="&rarr; Login" />
+<input type="submit" value="&rarr; Register" />
 </p>
 </fieldset>
 </form>
-</body>
-</html>
+</div>
+
+<?php include('../footer.php'); ?>

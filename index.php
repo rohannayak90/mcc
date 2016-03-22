@@ -1,14 +1,18 @@
     <?php include('header.php'); ?>
-        <div id="below-header">
+
+        <div id="below-header" class="home-page-row" style="padding-bottom: 0;">
             <div id="example-image" class="col-xs-12 col-sm-12 col-md-8">
                 <img src="images/customer-care-team-v2.jpg"/>
             </div>
             <div id="example-perfect-templates" class="col-xs-12 col-sm-12 col-md-4">
                 <h4>PERFECT MENUS ANYWHERE</h4>
                 <p>Whether you want just a striking visiting card, or a well laid out menu, you will find something to your needs here. Get started in minutes.</p>
+                <a href="templates/" class="button-2" style="margin: 0;">View Design</a>
             </div>
+            
+            <div class="clear"></div>
         </div>
-        <div id="features">
+        <div id="features" class="home-page-row" style="background: #F7F7F7">
             <div class="container">                
                 <ul>
                     <li class="feature-1">
@@ -28,7 +32,7 @@
             </div>
         </div>
 	
-        <div id="primary-content">
+        <div id="primary-content" class="home-page-row">
             <div class="container">
                 <article>
                     <h3>Featured Content</h3>
@@ -36,9 +40,10 @@
                     <a href="javascript:void(0)"><img src="images/video-placeholder.jpg" alt="video placeholder" /></a>
                 </article>
             </div>
+            <div class="clear"></div>
         </div>
         
-        <div id="secondary-content">
+        <div id="secondary-content" class="home-page-row" style="background: #F7F7F7">
             <div class="container">
 				<div class="row">
 					<article class="col-sm-6">
@@ -60,14 +65,16 @@
 				</div>
                 <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
 	
-        <div id="cta">
+        <div id="cta" class="home-page-row">
             <div class="container">
                 <h3>Heard Enough?</h3>
                 <p>Reading wouldn't be enough. Get started now. Check out for free.</p>
                 <a href="flash/customizer.php" class="button-2">Get Started</a>
             </div>
+            <div class="clear"></div>
         </div>
     
     <?php include('footer.php'); ?>

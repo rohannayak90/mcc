@@ -49,13 +49,13 @@ else
     $mysql_hostname = 'localhost';
 
     /*** mysql username ***/
-    $mysql_username = 'mysql_username';
+    $mysql_username = 'root';
 
     /*** mysql password ***/
-    $mysql_password = 'mysql_password';
+    $mysql_password = '';
 
     /*** database name ***/
-    $mysql_dbname = 'login_auth';
+    $mysql_dbname = 'mcc';
 
     try
     {

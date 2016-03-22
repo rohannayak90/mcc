@@ -1,5 +1,5 @@
 body {
-	background-color: #f7f7f7;
+	background-color: #F0F0F0;
 	color: #777;
 	font: normal 15px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
@@ -34,7 +34,6 @@ h3 {
 	font-size: 30px;
 	color: #444;
 	font-weight: bold;
-	text-transform: uppercase;
 	text-align: center;
 	margin-bottom: 20px;
 }
@@ -66,7 +65,7 @@ a {
 }
 
 a:hover {
-	color: #02b8dd;
+	color: #0A8253;
 }
 
 strong {
@@ -92,7 +91,7 @@ img{max-width:100%; height: auto; border:0; outline:none;}
 /*======================= Section 1: Header ======================== */
 header {
 	/*eight: 120px;*/
-    background-color: #f8fafa;
+    background-color: #02C475;
 }
 
 header h1 {
@@ -117,7 +116,7 @@ nav {
 nav ul li {
 	float: left;
 	display: inline-block;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 nav ul li a {
@@ -125,7 +124,7 @@ nav ul li a {
 	text-transform: uppercase;
 	font-weight: 100;
 	display: block;
-	margin-right: 20px;
+	margin-left: 20px;
 }
 
 .top-area{position: relative; top: 0; z-index: 2;}
@@ -199,7 +198,6 @@ nav ul li a {
 
 /* ================== Section 4: Primary Content =============== */
 #primary-content {
-	background-color: #f8fafa;
 	padding: 60px 0;
 	text-align: center;
 }
@@ -273,6 +271,7 @@ article h4 {
 
 .button-2 {
 	display: block;
+	text-align: center;
 	margin: 0 auto;
 	border: 1px solid #02b8dd;
 	color: #02b8dd;
@@ -339,4 +338,10 @@ footer a:hover {
 }
 #footer-menu a {  
     margin-left: 20px;     
+}
+
+/* ------------------- MY CUSTOM ONES --------------------- */
+.home-page-row{
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
