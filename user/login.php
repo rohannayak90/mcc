@@ -1,4 +1,7 @@
-<?php include('../header.php'); ?>
+<?php
+include('../header.php');
+require_once(echo base_url() . 'services/include/DBHandler.php');
+?>
 <div class="container" style="display: none;">
 <?php
 if( isset( $_SESSION['user_id'] ) )
@@ -32,7 +35,7 @@ if( isset( $_SESSION['user_id'] ) )
 <?php
 $message = 'basic';
 //Form submitted
-if (isset($_POST['submit']))
+if (isset($_POST['login']))
 {
     $login_username = $_POST['login_username'];
     
@@ -142,6 +145,19 @@ if (isset($_POST['submit']))
 else if (isset($_POST['register']))
 {
     $message = 'Register';
+    $user_first_name = $_POST['user_first_name'];
+    $user_last_name = $_POST['user_last_name'];
+    $user_email = $_POST['user_email'];
+    $login_password = $_POST['login_password'];
+    
+    if ((preg_match('/^[a-zA-Z0-9.@_]*$/', $user_email) != true))
+    {
+        $message = "Username must containonly  alphabets, numerals, . or @";
+    }
+    else
+    {
+        
+    }
 }
 ?>
 <div  style="background: #F7F7F7;">
@@ -169,7 +185,7 @@ else if (isset($_POST['register']))
                         </div>
                         <p style="color: #FF6565; "><?php echo $message; ?></p>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <p><input type="submit" name="submit" value="Log In" /></p>
+                        <p><input type="submit" name="login" value="Log In" /></p>
                         <!--<button value="submit" class="button button-block"/></button>-->
                     </form>
                 </div>
@@ -194,13 +210,13 @@ else if (isset($_POST['register']))
                             <label>
                                 Email Address<span class="req">*</span>
                             </label>
-                            <input type="email"required autocomplete="off"/>
+                            <input type="email"required name="user_email" autocomplete="off"/>
                         </div>
                         <div class="field-wrap">
                             <label>
                                 Set A Password<span class="req">*</span>
                             </label>
-                            <input type="password"required autocomplete="off"/>
+                            <input type="password"required name="login_password" autocomplete="off"/>
                         </div>
                         <button type="submit" name="register" class="button button-block"/>Get Started</button>
                     </form>
