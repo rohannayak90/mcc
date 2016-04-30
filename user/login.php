@@ -1,165 +1,131 @@
 <?php
 include('../header.php');
-require_once(echo base_url() . 'services/include/DBHandler.php');
-?>
-<div class="container" style="display: none;">
-<?php
-if( isset( $_SESSION['user_id'] ) )
-    { ?>
-    <h3>Logout Here</h3>
-        <p><a href="logout.php">Log Out Link </p>
-    <?php
-    }
-    else {
-    ?>
-        <h4>Login Here</h4>
-        <form action="login_submit.php" method="post">
-            <fieldset>
-                <p>
-                    <label for="phpro_username">Username</label>
-                    <input type="text" id="phpro_username" name="phpro_username" value="" maxlength="20" />
-                </p>
-                <p>
-                    <label for="phpro_password">Password</label>
-                    <input type="text" id="phpro_password" name="phpro_password" value="" maxlength="20" />
-                </p>
-                <p>
-                    <input type="submit" value="→ Login" />
-                </p>
-            </fieldset>
-        </form>
-        <?php
-    }
-?>
-</div>
-<?php
-$message = 'basic';
-//Form submitted
-if (isset($_POST['login']))
+
+require_once '../services/include/APIHandler.php';///base_url() . /// TODO: Not working this way
+
+$message = '';
+if ($_SESSION['user_id'])
 {
-    $login_username = $_POST['login_username'];
-    
-    if (isset($_POST['user_first_name']))
+    //Form submitted
+    if (isset($_POST['login']))
     {
-        $message = "My Name is ";
-        return;
-    }
-    /*** check if the users is already logged in ***
-    if(isset( $_SESSION['user_id'] ))
-    {
-        $message = 'Users is already logged in';
-    }
-    /*** check that both the username, password have been submitted ***
-    if(!isset( $_POST['login_username'], $_POST['login_password']))
-    {
-        $message = 'Please enter a valid username and password';
-    }
-    /*** check the username is the correct length ***/
-    elseif (strlen( $_POST['login_username']) > 20 || strlen($_POST['login_username']) < 4)
-    {
-        $message = 'Incorrect Length for Username';
-    }
-    /*** check the password is the correct length ***/
-    elseif (strlen( $_POST['login_password']) > 20 || strlen($_POST['login_password']) < 4)
-    {
-        $message = 'Incorrect Length for Password';
-    }
-    /*** check the username has only alpha numeric characters ***/
-    elseif (preg_match('/^[a-zA-Z0-9.@_]*$/', $login_username) != true)
-    {
-        /*** if there is no match ***/
-        $message = "Username must containonly  alphabets, numerals, . or @";
-    }
-    /*** check the password has only alpha numeric characters ***/
-    elseif (ctype_alnum($_POST['login_password']) != true)
-    {
-            /*** if there is no match ***/
-            $message = "Password must be alpha numeric";
-    }
-    else
-    {
-        /*** if we are here the data is valid and we can insert it into database ***/
-        $login_username = filter_var($_POST['login_username'], FILTER_SANITIZE_STRING);
-        $login_password = filter_var($_POST['login_password'], FILTER_SANITIZE_STRING);
+        $login_username = $_POST['login_username'];
 
-        /*** now we can encrypt the password ***/
-        $login_password = sha1( $login_password );
-
-        /*** connect to database ***/
-        /*** mysql hostname ***/
-        $mysql_hostname = 'localhost';
-
-        /*** mysql username ***/
-        $mysql_username = 'root';
-
-        /*** mysql password ***/
-        $mysql_password = '';
-
-        /*** database name ***/
-        $mysql_dbname = 'mcc';
-
-        try
+        /*if (isset($_POST['user_first_name']))
         {
-            $dbh = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-            /*** $message = a message saying we have connected ***/
+            $message = "My Name is ";
+            return;
+        }*/
+        /*** check if the users is already logged in ***/
+        if(isset( $_SESSION['user_id'] ))
+        {
+            $message = 'User is already logged in';
+        }
+        /*** check that both the username, password have been submitted ***/
+        elseif(!isset( $_POST['login_username'], $_POST['login_password']))
+        {
+            $message = 'Please enter a valid username and password';
+        }
+        /*** check the username is the correct length ***/
+        elseif (strlen( $_POST['login_username']) > 20 || strlen($_POST['login_username']) < 4)
+        {
+            $message = 'Incorrect Length for Username';
+        }
+        /*** check the password is the correct length ***/
+        elseif (strlen( $_POST['login_password']) > 20 || strlen($_POST['login_password']) < 4)
+        {
+            $message = 'Incorrect Length for Password';
+        }
+        /*** check the username has only alpha numeric characters ***/
+        elseif (preg_match('/^[a-zA-Z0-9.@_]*$/', $login_username) != true)
+        {
+            /*** if there is no match ***/
+            $message = "Username must containonly  alphabets, numerals, . or @";
+        }
+        /*** check the password has only alpha numeric characters **
+        elseif (ctype_alnum($_POST['login_password']) != true)
+        {
+            /*** if there is no match ***
+            $message = "Password must be alpha numeric";
+        }*/
+        else
+        {
+            /*** if we are here the data is valid and we can insert it into database ***/
+            $login_username = filter_var($_POST['login_username'], FILTER_SANITIZE_STRING);
+            $login_password = filter_var($_POST['login_password'], FILTER_SANITIZE_STRING);
 
-            /*** set the error mode to excptions ***/
-            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $data = [];
+            $data['username'] = $login_username;
+            $data['password'] = $login_password;
 
-            /*** prepare the select statement ***/
-            $stmt = $dbh->prepare("SELECT login_user_id, login_username, login_password FROM tbl_mst_users 
-                        WHERE login_username = :login_username AND login_password = :login_password");
+            $result = CallAPI('POST', 'login', $data);
 
-            /*** bind the parameters ***/
-            $stmt->bindParam(':login_username', $login_username, PDO::PARAM_STR);
-            $stmt->bindParam(':login_password', $login_password, PDO::PARAM_STR, 40);
-
-            /*** execute the prepared statement ***/
-            $stmt->execute();
-
-            /*** check for a result ***/
-            $user_id = $stmt->fetchColumn();
-
-            /*** if we have no result then fail boat ***/
-            if($user_id == false)
+            $result_array = json_decode($result);
+            if (isset($result_array->error) && $result_array->error == 1)
             {
-                    $message = 'Login Failed';
+                die('Error Occured - ' . $result_array->message);
             }
-            /*** if we do have a result, all is well ***/
             else
             {
-                    /*** set the session user_id variable ***/
-                    $_SESSION['user_id'] = $user_id;
+                ///echo $result_array->message;
+                $user_id = $result_array->userID;
+                $_SESSION['user_id'] = $user_id;
+                $message = 'You are now logged in with userID = ' . $_SESSION['user_id'];
+                header('Location: ' . base_url() . 'user/dashboard.php');
+            }
 
-                    /*** tell the user we are logged in ***/
-                    $message = 'You are now logged in';
+        } 
+    }
+    else if (isset($_POST['register']))
+    {
+        $message = 'Register';
+
+        /*** if we are here the data is valid and we can insert it into database ***/
+        $firstName = filter_var($_POST['user_first_name'], FILTER_SANITIZE_STRING);
+        $lastName = filter_var($_POST['user_last_name'], FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST['user_email'], FILTER_SANITIZE_STRING);
+        $login_username = filter_var($_POST['user_email'], FILTER_SANITIZE_STRING);
+        $login_password = filter_var($_POST['login_password'], FILTER_SANITIZE_STRING);
+
+        if ((preg_match('/^[a-zA-Z0-9.@_]*$/', $login_username) != true))
+        {
+            $message = "Username must containonly  alphabets, numerals, . or @";
+        }
+        else
+        {
+            $message = "Trying to register";
+            /*** begin our session ***/
+            session_start();
+
+            $data = [];
+            $data['firstName'] = $firstName;
+            $data['lastName'] = $lastName;
+            $data['email'] = $email;
+            $data['username'] = $login_username;
+            $data['password'] = $login_password;
+
+            $result = CallAPI('POST', 'register', $data);
+
+            $result_array = json_decode($result);
+            if (isset($result_array->error) && $result_array->error == 1)
+            {
+                die('Error Occured - ' . $result_array->message);
+            }
+            else
+            {
+                ///echo $result_array->message;
+                header('Location: ' . base_url() . 'user/dashboard.php');
             }
         }
-        catch(Exception $e)
-        {
-            /*** if we are here, something has gone wrong with the database ***/
-            $message = 'We are unable to process your request. Please try again later"';
-        }
-    } 
+    }
 }
-else if (isset($_POST['register']))
+else
 {
-    $message = 'Register';
-    $user_first_name = $_POST['user_first_name'];
-    $user_last_name = $_POST['user_last_name'];
-    $user_email = $_POST['user_email'];
-    $login_password = $_POST['login_password'];
-    
-    if ((preg_match('/^[a-zA-Z0-9.@_]*$/', $user_email) != true))
-    {
-        $message = "Username must containonly  alphabets, numerals, . or @";
-    }
-    else
-    {
-        
-    }
+    header('Location: ' . base_url() . 'user/dashboard.php');
 }
+
 ?>
+
 <div  style="background: #F7F7F7;">
     <div class="container">
         <div class="form">      
@@ -175,7 +141,7 @@ else if (isset($_POST['register']))
                             <label>
                                 Email Address<span class="req">*</span>
                             </label>
-                            <input type="email"required name="login_username" autocomplete="off"/>
+                            <input type="text"required name="login_username" autocomplete="off"/>
                         </div>                
                         <div class="field-wrap">
                             <label>

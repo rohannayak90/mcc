@@ -17,7 +17,7 @@
                     <nav>
                         <ul>
                             <li><a href="<?php echo base_url(); ?>">Home</a></li>
-                            <li><a href="<?php echo base_url() . 'pages/dashboard.php'; ?>">Dashboard</a></li>
+                            <li><a href="<?php echo base_url() . 'user/dashboard.php'; ?>">Dashboard</a></li>
                             <li><a href="<?php echo base_url() . 'contact.php'; ?>">Contact</a></li>
                             <li><a href="<?php echo base_url() . 'blog.php'; ?>">Blog</a></li>
                             <li><a href="<?php echo base_url() . 'flash/customizer.php'; ?>">Customizer</a></li>

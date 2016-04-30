@@ -197,6 +197,9 @@ nav ul li a {
 }
 
 /* ================== Section 4: Primary Content =============== */
+.main-area  {
+    padding: 20px 0;
+}
 #primary-content {
 	padding: 60px 0;
 	text-align: center;
@@ -339,6 +342,131 @@ footer a:hover {
 #footer-menu a {  
     margin-left: 20px;     
 }
+
+/* -------------- SWAROVSKI ---------------------*/
+.custombtn {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        height:156px;
+        border-radius:0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        line-height: 30px;
+        font-size: 16px;
+        font-weight: bold;
+
+        width:100%;
+    }
+
+    .custombtn div.icon {
+        width:30%;
+        display: block;
+        position: relative;
+        text-align:center;
+        padding: 0;
+    }
+    .custombtn div.title { 
+        display: block;
+        position: relative;
+        
+        padding: 0;
+        width:70%;
+    }
+
+.custombtn.blue div.title{ margin:0 auto; float:none;}
+
+    .custombtn div.left {
+        float: left;
+        border-radius:0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+    }
+
+    .custombtn div.right {
+        float: right;
+        border-radius:0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        display: table;
+        height: 153px;
+    }
+
+    .custombtn div.icon {
+        font-size: 23px;
+        background-color: #ffffff;
+        -webkit-box-shadow: 0 3px 0 0 #e3e3e3;
+        box-shadow: 0 3px 0 0 #e3e3e3;
+        text-shadow: 0px 1px 1px #e3e3e3;
+        display: table;
+        height: 153px;
+    }
+    .custombtn div.icon span, .midlAlign{  display: table-cell;  vertical-align: middle;}
+    .custombtn div.icon span img{opacity:.3; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
+    .custombtn:hover div.icon span img{opacity:.8;}
+    .custombtn.blue div.title {
+        background: url(../images/aw16-img.jpg) no-repeat center center #060c28;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    .custombtn.blue:hover div.title {}
+    .custombtn div.title {
+        -webkit-box-shadow: 0 3px 0 0 #c1c1c1;
+        box-shadow: 0 3px 0 0 #c1c1c1;
+        background-color: #e0dfdf;
+        padding:0 15px 0 25px;
+        -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;
+    }
+    .custombtn:hover div.title{
+        -webkit-box-shadow: 0 3px 0 0 #939393;
+        box-shadow: 0 3px 0 0 #939393;
+        background-color: #c5c5c5;
+    }
+    .custombtn.blue div.title p{color: rgba(256,256,256,.8);}
+    .custombtn.blue:hover div.title p.clickBtn{color:#fff;}
+    .custombtn div.title p{font-family: 'newsgoth_cn_btregular'; color:#717171; font-size:24px; line-height:26px; margin:0; text-align:left;}
+    .custombtn:hover div.title p{color:#f2f2f2;}
+
+    .custombtn div.title p span {
+        font-size:28px;        
+    }
+    .custombtn div.title p em{font-style:normal;}
+
+    .custombtn div.title p.divider{border-bottom:1px solid #c2c2c2; padding-bottom:10px;}
+    .custombtn:hover div.title p.divider{border-bottom:1px solid #adadad; padding-bottom:10px;}
+    .custombtn div.title p.clickBtn{background: url(../images/rightAro.png) no-repeat right 16px;  border-top:1px solid #ececec; padding-top:10px; font-size:20px;}
+    .custombtn:hover div.title p.clickBtn{ border-top:1px solid #dcdcdc; color:#333; background: url(../images/rightAro.png) no-repeat right 16px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
+
+    .custombtn:active, .btn.active {
+        height: 154px;
+        margin-top:2px;
+    }
+
+    .custombtn:hover {
+    }
+
+    .custombtn:hover div.arrow-left {
+        right: 10px;
+    }
+
+    .custombtn:hover div.arrow-right {
+        left: 10px;
+    }
+
+    .custombtn:hover div.slant-left {
+        right: 10px;
+    }
+
+    .custombtn:hover div.slant-right {
+        left: 10px;
+    }
+
+/* ------------------------ SWAROVSKI END ---------------- */
 
 /* ------------------- MY CUSTOM ONES --------------------- */
 .home-page-row{

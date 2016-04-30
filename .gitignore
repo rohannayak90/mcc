@@ -46,5 +46,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# My Own Written
+
+.buildpath
+.project
+
+.settings
 /services/include
 /services/v1
