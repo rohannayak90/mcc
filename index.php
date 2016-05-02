@@ -1,80 +1,193 @@
     <?php include('header.php'); ?>
+    
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">                
+                <h1>Set Your <br/><strong>DESIGN</strong> APART.</h1>
+                <hr>
+                <p>Create your own designs. Start for free.</p>
+                <a href="flash/customizer.php" class="btn btn-primary btn-xl page-scroll">Get Started</a>
+            </div>
+        </div>
+    </header>
 
-        <div id="below-header" class="home-page-row" style="padding-bottom: 0;">
-            <div id="example-image" class="col-xs-12 col-sm-12 col-md-8">
-                <img src="images/customer-care-team-v2.jpg"/>
-            </div>
-            <div id="example-perfect-templates" class="col-xs-12 col-sm-12 col-md-4">
-                <h4>PERFECT MENUS ANYWHERE</h4>
-                <p>Whether you want just a striking visiting card, or a well laid out menu, you will find something to your needs here. Get started in minutes.</p>
-                <a href="templates/" class="button-2" style="margin: 0;">View Design</a>
-            </div>
-            
-            <div class="clear"></div>
-        </div>
-        <div id="features" class="home-page-row" style="background: #F7F7F7">
-            <div class="container">                
-                <ul>
-                    <li class="feature-1">
-                        <h4>Easy to Edit</h4>
-                        <p>The easy to use interface makes doing everything in a few clicks. Just create any design you want in a matter of minutes.</p>
-                    </li>
-                    <li class="feature-2">
-                        <h4>Simply Powerful</h4>
-                        <p>Don't let the simplicity fool you. The website has been made to be as easy as possible, but be powerful in all ways possible</p>
-                    </li>
-                    <li class="feature-3">
-                        <h4>Fully Customizable</h4>
-                        <p>Change anything you want, anywhere you want. Create the unqiue yours.</p>
-                    </li>
-                    <div class="clear"></div>
-                </ul>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Perfect Designs!</h2>
+                    <hr class="light">
+                    <p class="text-faded">
+                        Start designing anything you want, as we have everything you will need at your finger tips. So just let the magic happen.
+                    </p>
+                    <a href="javascript:void(0)" class="btn btn-default btn-xl">Get Started!</a>
+                </div>
             </div>
         </div>
-	
-        <div id="primary-content" class="home-page-row">
-            <div class="container">
-                <article>
-                    <h3>Featured Content</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt. Nam ultricies odio ac neque suscipit volutpat. Ut dictum adipiscing felis sed malesuada. Integer porta sem nec nibh hendrerit imperdiet. </p>
-                    <a href="javascript:void(0)"><img src="images/video-placeholder.jpg" alt="video placeholder" /></a>
-                </article>
+    </section>
+    
+    <section id="services" class="bg-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">At Your Service</h2>
+                    <hr class="primary">
+                </div>
             </div>
-            <div class="clear"></div>
         </div>
-        
-        <div id="secondary-content" class="home-page-row" style="background: #F7F7F7">
-            <div class="container">
-				<div class="row">
-					<article class="col-sm-6">
-						<img src="images/article-image-1.jpg" alt="" />
-						<div class="overlay">
-							<h4>Secondary Content</h4>
-							<p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt nam.</small></p>
-							<a href="javascript:void(0)" class="more-link">View more</a>
-						</div>
-					</article>
-					<article class="col-sm-6">
-						<img src="images/article-image-2.jpg" alt="" />
-						<div class="overlay">
-							<h4>Secondary Content</h4>
-							<p><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod leo a nibh dignissim tincidunt nam.</small></p>
-							<a href="javascript:void(0)" class="more-link">View more</a>
-						</div>
-					</article>
-				</div>
-                <div class="clear"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
+                        <h3>Thousand Templates</h3>
+                        <p class="text-muted">Our templates are updated regularly so you don't have to make everything from scratch.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Range of Icons</h3>
+                        <p class="text-muted">We have a large set of images and icons that you can just add and get going.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>Image Filters</h3>
+                        <p class="text-muted">We have built-in image editing tools that will make your images stand out on your designs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Font Collection</h3>
+                        <p class="text-muted">We have added a large set of fonts into our application, so that you get your designs on your own taste.</p>
+                    </div>
+                </div>
             </div>
-            <div class="clear"></div>
         </div>
-	
-        <div id="cta" class="home-page-row">
-            <div class="container">
-                <h3>Heard Enough?</h3>
-                <p>Reading wouldn't be enough. Get started now. Check out for free.</p>
-                <a href="flash/customizer.php" class="button-2">Get Started</a>
+    </section>
+    
+    <section id="portfolio" class=""><!-- class="no-padding" -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Creations From Our Friends</h2>
+                    <hr class="primary">
+                </div>
             </div>
-            <div class="clear"></div>
         </div>
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-3 col-sm-6">
+                    <a href="javescript:void(0)" class="portfolio-box">
+                        <img src="images/portfolio/1.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="javescript:void(0)" class="portfolio-box">
+                        <img src="images/portfolio/2.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="javescript:void(0)" class="portfolio-box">
+                        <img src="images/portfolio/3.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="javescript:void(0)" class="portfolio-box">
+                        <img src="images/portfolio/4.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="javescript:void(0)" class="portfolio-box">
+                        <img src="images/portfolio/5.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <a href="javescript:void(0)" class="portfolio-box">
+                        <img src="images/portfolio/6.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Category
+                                </div>
+                                <div class="project-name">
+                                    Project Name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="bg-secondary">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>Heard Enough?</h2>
+                <p>
+                    Reading wouldn't be enough. Nothing beats trying on your own.
+                    <br>
+                    Get started now. Check out for free.
+                </p>
+                <a href="javascript:void(0)" class="btn btn-primary btn-xl wow tada">Start Now!</a>
+            </div>
+        </div>
+    </section>
     
     <?php include('footer.php'); ?>
+    
+    

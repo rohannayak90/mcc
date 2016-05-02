@@ -3,12 +3,19 @@ include('../header.php');
 
 require_once '../services/include/APIHandler.php';///base_url() . /// TODO: Not working this way
 
-$message = '';
-if ($_SESSION['user_id'])
+$message = 't';
+
+if (isset($_SESSION['user_id']))
+{
+    header('Location: ' . base_url() . 'user/dashboard.php');    
+}
+else
 {
     //Form submitted
     if (isset($_POST['login']))
     {
+        $message = 'Login';
+        
         $login_username = $_POST['login_username'];
 
         /*if (isset($_POST['user_first_name']))
@@ -64,6 +71,7 @@ if ($_SESSION['user_id'])
             if (isset($result_array->error) && $result_array->error == 1)
             {
                 die('Error Occured - ' . $result_array->message);
+                $message = 'You are entering wrong data';
             }
             else
             {
@@ -71,7 +79,7 @@ if ($_SESSION['user_id'])
                 $user_id = $result_array->userID;
                 $_SESSION['user_id'] = $user_id;
                 $message = 'You are now logged in with userID = ' . $_SESSION['user_id'];
-                header('Location: ' . base_url() . 'user/dashboard.php');
+                header('Location: ' . base_url() . 'user/dashboard.php?user_id=' . $user_id);
             }
 
         } 
@@ -118,10 +126,10 @@ if ($_SESSION['user_id'])
             }
         }
     }
-}
-else
-{
-    header('Location: ' . base_url() . 'user/dashboard.php');
+    else
+    {
+         $message = 'Nothing Set';
+    }
 }
 
 ?>
@@ -151,8 +159,8 @@ else
                         </div>
                         <p style="color: #FF6565; "><?php echo $message; ?></p>
                         <p class="forgot"><a href="#">Forgot Password?</a></p>
-                        <p><input type="submit" name="login" value="Log In" /></p>
-                        <!--<button value="submit" class="button button-block"/></button>-->
+                        <!--<p><input type="submit" name="login" value="Log In" /></p>-->
+                        <button value="submit" name="login" class="button button-block">LOGIN</button>
                     </form>
                 </div>
                 <div id="signup">   
