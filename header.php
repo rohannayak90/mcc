@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+    session_start();
+    require_once('inc/server-details.php');
     require_once('inc/functions.php');
 ?>
 <head>
@@ -41,6 +43,9 @@
 </head>
 <body id="page-top">
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+                     <?php
+                                //if($_SERVER['REQUEST_URI'] == $SERVER_FOLDER) echo 'navbar-fixed-top'
+                ?>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -50,27 +55,34 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Creative</a>
+                <a class="navbar-brand page-scroll" href="<?php echo base_url(); ?>">Creative</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'user/login.php'; ?>">About</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/login.php'; ?>">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'user/login.php'; ?>">Services</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/login.php'; ?>">Services</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'user/login.php'; ?>">Portfolio</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/dashboard.php'; ?>">Portfolio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/login.php'; ?>">Login</a>
+                        <?php
+                        if (isset($_SESSION['user_id']))
+                            echo '<a class="page-scroll" href="' . base_url() . 'pages/logout.php">Logout</a>';
+                        else
+                            echo '<a class="page-scroll" href="' . base_url() . 'pages/login.php">Login</a>';
+                        ?>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
-    </nav>   
+    </nav>
+    
+    

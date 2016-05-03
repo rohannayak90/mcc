@@ -11,7 +11,7 @@ html, body {
 
 body {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
-    background-color: #cecece;
+    background-color: #F1F2F7;
 }
 
 hr {
@@ -25,15 +25,17 @@ hr.light {
 }
 
 a {
-    color: #f05f40;
+    /*color: #f05f40;*/
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
+    text-decoration: none;
 }
 
 a:hover,
 a:focus {
-    color: #eb3812;
+    /*color: #eb3812;*/
+    text-decoration: none;
 }
 
 h1,
@@ -46,9 +48,9 @@ h6 {
 }
 
 p {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.5;*/
 }
 
 .bg-primary {
@@ -72,6 +74,18 @@ section {
 
 aside {
     padding: 50px 0;
+}
+
+footer {    
+    background-color: rgba(0,0,0,0.6);
+}
+
+footer .nav>li>a {
+    color: white;
+}
+footer .nav>li>a:focus, .nav>li>a:hover {
+    color: greenyellow;
+    background-color: transparent;
 }
 
 .no-padding {
@@ -118,7 +132,7 @@ aside {
     background-color: transparent;
 }
 
-.navbar-default .nav > li.active>a:hover,
+.navbar-default .nav>li.active>a:hover,
 .navbar-default .nav>li.active>a:focus:hover {
     background-color: transparent;
 }
@@ -126,7 +140,7 @@ aside {
 @media(min-width:768px) {
     .navbar-default {
         border-color: rgba(255,255,255,.3);
-        background-color: transparent;
+        background-color: rgba(0,0,0,.3);
     }
 
     .navbar-default .navbar-header .navbar-brand {
@@ -180,12 +194,13 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url(../images/introduction.png);
+    /*background-image: url(../images/introduction.png);*/
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    padding-bottom: 400px;
 }
 
 header .header-content {
@@ -480,6 +495,7 @@ body {
 #footer-info p {
     float: left;
     margin: 15px 0;
+    color: #FFF;
 }
 
 footer ul li a:hover {

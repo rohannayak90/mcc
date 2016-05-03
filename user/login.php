@@ -97,7 +97,7 @@ else
 
         if ((preg_match('/^[a-zA-Z0-9.@_]*$/', $login_username) != true))
         {
-            $message = "Username must containonly  alphabets, numerals, . or @";
+            $message = "Username must contain only  alphabets, numerals, . or @";
         }
         else
         {

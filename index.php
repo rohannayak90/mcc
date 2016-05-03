@@ -1,12 +1,40 @@
     <?php include('header.php'); ?>
     
-    <header>
+    <?php
+    
+    $show_header = false;
+    $banner_header = '';
+    $description = '';
+    $link = '';
+    $link_text = '';
+    $style_with_header_background = '';
+    
+    if ($_SERVER['REQUEST_URI'] == $SERVER_FOLDER)
+    {
+        $show_header = true;
+        $style_with_header_background = 'background-image: url(' . base_url() . 'images/introduction.png)';
+        $banner_header = 'Set Your <br/><strong>DESIGN</strong> APART.';
+        $description = 'Create your own designs. Start for free.';
+        $link = base_url() . 'flash/customizer.php';
+        $link_text = 'GET STARTED';
+    }
+    
+    ?>
+    
+    <header style="<?php echo $style_with_header_background; ?>">
         <div class="header-content">
-            <div class="header-content-inner">                
-                <h1>Set Your <br/><strong>DESIGN</strong> APART.</h1>
-                <hr>
-                <p>Create your own designs. Start for free.</p>
-                <a href="flash/customizer.php" class="btn btn-primary btn-xl page-scroll">Get Started</a>
+            <div class="header-content-inner">
+                <?php
+                if ($banner_header != '')
+                    echo '<h1>' . $banner_header . '</h1>';
+                if ($banner_header != '' && $description != '')
+                    echo '<hr>';
+                if ($description != '')
+                    echo '<p>' . $description . '</p>';                
+                if ($link_text != '')
+                    echo '<a href="' . $link . '" class="btn btn-primary btn-xl page-scroll">' . $link_text . '</a>';
+                ?>
+                
             </div>
         </div>
     </header>
