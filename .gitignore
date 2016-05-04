@@ -52,5 +52,5 @@ Temporary Items
 .project
 
 .settings
-/services/include
-/services/v1
+#/services/include
+#/services/v1

@@ -274,3 +274,53 @@ button.btn:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none
 button.btn:focus { outline: 0; opacity: 0.6; background: #4aaf51; color: #fff; }
 
 button.btn:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #4aaf51; color: #fff; }
+
+
+
+/* ----------------- NEW COMPONENT & CSS TAKEN FROM DEBA FOR PROMPT EASING OUTSIDE -------------------
+<div class="form-group styled-input">
+    <input type="text" id="" class="form-control" required="">
+    <label>Author Name</label>
+</div>
+
+.styled-input {
+  position: relative;
+}
+
+.styled-input label {
+  color: #999;
+  font-weight:300;
+  padding:1rem 0;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.styled-input.wide { width: 100%; }
+.styled-input input ~ span,
+.styled-input textarea ~ span {
+  display: block;
+  width: 0;
+  height: 3px;
+  background: #333;
+  position: absolute;
+  bottom: 0;
+  left:15px;
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
+}
+
+input:focus,
+textarea:focus { outline: 0;  }
+
+input:focus ~ span,
+textarea:focus ~ span {
+  width: 96.5%;
+  left:15px;
+  -webkit-transition: all 0.075s ease;
+  transition: all 0.075s ease;
+}
+*/

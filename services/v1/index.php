@@ -174,7 +174,8 @@ function authenticate(\Slim\Route $route) {
     $app = \Slim\Slim::getInstance();
  
     // Verifying Authorization Header
-    if (isset($headers['Authorization'])) {
+    if (isset($headers['Authorization']))
+    {
         $db = new DbHandler();
  
         // get the api key
@@ -193,10 +194,12 @@ function authenticate(\Slim\Route $route) {
             if ($user != NULL)
                 $user_id = $user["id"];
         }
-    } else {
+    } 
+    else
+    {
         // api key is missing in header
         $response["error"] = true;
-        $response["message"] = "Api key is misssing";
+        $response["message"] = "API key is misssing";
         echoRespnse(400, $response);
         $app->stop();
     }
@@ -349,13 +352,14 @@ $app->delete('/tasks/:id', 'authenticate', function($task_id) use($app) {
  * method GET
  * url /tasks          
  */
-$app->get('/users', 'authenticate', function() {
+$app->get('/users', 'authenticate', function()
+          {
             global $user_id;
             $response = array();
             $db = new DbHandler();
  
-            // fetching all user tasks
-            $result = $db->getAllUserTasks($user_id);
+            // fetching all users
+            $result = $db->get_all_users($user_id);
  
             $response["error"] = false;
             $response["tasks"] = array();
@@ -373,6 +377,67 @@ $app->get('/users', 'authenticate', function() {
             echoRespnse(200, $response);
         });
 
+/**
+ * Fetch Designs
+ */
+$app->get('/design', 'authenticate', function($user_id)
+          {
+              ///global $user_id;
+              $response = array();
+              $db = new DBHandler();
+              
+              // fetching all user tasks
+              $result = $db->get_all_designs($user_id);
+              
+              $response["error"] = false;
+              $response["designs"] = array();
+              
+              // looping through result and preparing tasks array
+              while ($design = $result->fetch_assoc())
+              {
+                  $tmp = array();
+                  $tmp["id"] = $design["pk_design_id"];
+                  $tmp["design_name"] = $design["design_name"];
+                  $tmp["design_image_path"] = $design["design_image_path"];
+                  $tmp["status"] = $design["status"];
+                  
+                  array_push($response["designs"], $tmp);
+              }
+              
+              echoRespnse(200, $response);
+          });
  
+/**
+ * Fetch Designs
+ */
+$app->post('/design', 'authenticate',  use ($app)
+           {
+                // check for required params
+                verifyRequiredParams(array('design'));
+
+                $response = array();
+                $design = $app->request->post('design');
+
+                global $user_id;
+                $db = new DBHandler();
+
+                // creating new task
+                $design_id = $db->insertDesign($user_id, $task);
+
+                if ($design_id != NULL)
+                {
+                    $response["error"] = false;
+                    $response["message"] = "Design created successfully";
+                    $response["design_id"] = $design_id;
+                }
+                else
+                {
+                    $response["error"] = true;
+                    $response["message"] = "Failed to create design. Please try again";
+                }
+                echoRespnse(201, $response);
+           });
+
+
 $app->run();
 ?>

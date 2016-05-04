@@ -1,7 +1,7 @@
 <?php
-include('../header.php');
-
-require_once '../services/include/APIHandler.php';
+include('header.php');
+$api_handler_url = base_url() . 'services/include/APIHandler.php'; /// Not working by using this
+require_once 'services/include/APIHandler.php';
 
 $message = 'Login';
 
@@ -81,6 +81,7 @@ else
                 ///echo $result_array->message;
                 $user_id = $result_array->userID;
                 $_SESSION['user_id'] = $user_id;
+                $_SESSION['api_key'] = $result_array->apiKey;
                 $message = 'You are now logged in with userID = ' . $_SESSION['user_id'];
                 header('Location: ' . base_url() . 'pages/dashboard.php');                
             }
@@ -96,6 +97,37 @@ else
 <!-- css for forms -->
 <link rel="stylesheet" href="<?php echo base_url() . 'css/forms.css'?>" type="text/css">
 
+<section class="bg-secondary">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 form-box">
+                <div class="form-top">
+                    <h2>Login</h2>
+                    <p><?php echo $message; ?></p>
+                </div>
+                <div class="form-bottom">
+                    <form role="form" action="" method="post" class="login-form">                        
+                        <div class="form-group">
+                            <label class="sr-only" for="form-username">Username</label>
+                            <input type="text" name="login_username" placeholder="Username..." class="form-username form-control" id="form-username">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="form-password">Password</label>
+                            <input type="password" name="login_password" placeholder="Password..." class="form-password form-control"
+                                   id="form-password">
+                        </div>
+                        <button type="submit" name="login" class="btn">Sign in!</button>
+                        <div>
+                            <a href="pages/register.php" style="float:left;">New User?</a>
+                            <a href="pages/reset-password.php" style="float:right;">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">                    
@@ -107,6 +139,10 @@ else
                     </div>
                     <div class="form-bottom">
                         <form role="form" action="" method="post" class="login-form">
+                            <div class="form-group styled-input">
+                                <input type="text" id="" class="form-control" required="">
+                                <label>Author Name</label>
+                            </div>
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
                                 <input type="text" name="login_username" placeholder="Username..." class="form-username form-control" id="form-username">
@@ -118,14 +154,14 @@ else
                             </div>
                             <button type="submit" name="login" class="btn">Sign in!</button>
                             <div>
-                                <a href="registration.php" style="float:left;">New User?</a>
+                                <a href="register.php" style="float:left;">New User?</a>
                                 <a href="dashboard.php" style="float:right;">Forgot Password?</a>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!--<div class="row">
+            <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 social-login">
                     <h3>...or login with:</h3>
                     <div class="social-login-buttons">
@@ -140,8 +176,10 @@ else
 	                    </a>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
     </div>
 </div>
-<?php include('../footer.php'); ?>
+-->
+
+<?php include('footer.php'); ?>

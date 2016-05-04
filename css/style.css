@@ -81,12 +81,17 @@ footer {
 }
 
 footer .nav>li>a {
-    color: white;
+    /*color: white;*/
 }
 footer .nav>li>a:focus, .nav>li>a:hover {
-    color: greenyellow;
+    color: #eb3812;
     background-color: transparent;
 }
+
+.full-width{
+    width: 100%;
+}
+
 
 .no-padding {
     padding: 0;

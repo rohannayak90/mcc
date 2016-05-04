@@ -9,14 +9,16 @@
                         <a href="javascript:void(0)">Privacy Policy</a>
                     </span>
                 </div>-->
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="javascript:void(0)">Terms of Service</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="javascript:void(0)">Privacy Policy</a>
-                    </li>
-                </ul>
+                <nav class="navbar-default">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="javascript:void(0)">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="javascript:void(0)">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <!--<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
             <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>-->

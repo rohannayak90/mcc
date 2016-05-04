@@ -4,39 +4,66 @@
     <div class="container">
         <div class="col-md-3 col-sm-6">
             <div class="module-block center">
-            <a href="<?php echo base_url() . 'flash/customizer.php' ?>">
-                <i class="fa fa-4x fa-cloud" aria-hidden="true"></i>
-                <h3>New Order</h3>
-                <p>Update your user account information from here</p>
-            </a>
+                <a href="<?php echo base_url() . 'flash/customizer.php' ?>">
+                    <i class="fa fa-4x fa-cloud" aria-hidden="true"></i>
+                    <h3>New Order</h3>
+                    <p>Update your user account information from here</p>
+                </a>
             </div>
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="module-block center">
-            <a href="<?php echo base_url() . 'pages/saved-orders.php' ?>">
-                <i class="fa fa-4x fa-save" aria-hidden="true"></i>
-                <h3>Saved Orders</h3>
-                <p>Update your user account information from here</p>
-            </a>
+                <a href="<?php echo base_url() . 'pages/saved-orders.php' ?>">
+                    <i class="fa fa-4x fa-save" aria-hidden="true"></i>
+                    <h3>Saved Orders</h3>
+                    <p>Update your user account information from here</p>
+                </a>
             </div>
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="module-block center">
-            <a href="<?php echo base_url() . 'pages/profile.php' ?>">
-                <i class="fa fa-4x fa-edit" aria-hidden="true"></i>
-                <h3>Edit Profile</h3>                
-                <p>Update your user account information from here</p>
-            </a>
+                <a href="<?php echo base_url() . 'pages/profile.php' ?>">
+                    <i class="fa fa-4x fa-edit" aria-hidden="true"></i>
+                    <h3>Edit Profile</h3>                
+                    <p>Update your user account information from here</p>
+                </a>
             </div>
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="module-block center">
-            <a href="<?php echo base_url() . 'pages/cart.php' ?>">
-                <!--<img src="../images/pass-icon.png" alt="">-->
-                <i class="fa fa-4x fa-shopping-cart" aria-hidden="true"></i>
-                <h3>Shopping Cart</h3>
-                <p>Update your user account information from here</p>
-            </a>
+                <a href="<?php echo base_url() . 'pages/cart.php' ?>">
+                    <!--<img src="../images/pass-icon.png" alt="">-->
+                    <i class="fa fa-4x fa-shopping-cart" aria-hidden="true"></i>
+                    <h3>Shopping Cart</h3>
+                    <p>Update your user account information from here</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="module-block center">
+                <a href="<?php echo base_url() . 'pages/designs.php' ?>">
+                    <i class="fa fa-4x fa-cloud" aria-hidden="true"></i>
+                    <h3>View Designs</h3>
+                    <p>View your designs and add/edit them here.</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="module-block center">
+                <a href="<?php echo base_url() . 'pages/templates.php' ?>">
+                    <i class="fa fa-4x fa-cloud" aria-hidden="true"></i>
+                    <h3>View Templates</h3>
+                    <p>View your templates and add/edit them here.</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="module-block center">
+                <a href="<?php echo base_url() . 'pages/themes.php' ?>">
+                    <i class="fa fa-4x fa-cloud" aria-hidden="true"></i>
+                    <h3>View Themes</h3>
+                    <p>View your themes and add/edit them here.</p>
+                </a>
             </div>
         </div>
     </div>

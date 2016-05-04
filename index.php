@@ -1,7 +1,9 @@
     <?php include('header.php'); ?>
     
     <?php
-    
+
+    $page_title = 'Start Your Customized Design';
+
     $show_header = false;
     $banner_header = '';
     $description = '';

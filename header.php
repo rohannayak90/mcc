@@ -2,8 +2,8 @@
 <html lang="en">
 <?php
     session_start();
-    require_once('inc/server-details.php');
-    require_once('inc/functions.php');
+    require_once('inc/basic-details.php');
+    require_once('inc/functions.php');    
 ?>
 <head>
 
@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>Creative - Start Your Customized Design</title>
+    <title>Creative - <?php echo $page_title ?></title>
     
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     
@@ -43,9 +43,9 @@
 </head>
 <body id="page-top">
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-                     <?php
-                                //if($_SERVER['REQUEST_URI'] == $SERVER_FOLDER) echo 'navbar-fixed-top'
-                ?>
+        <?php
+            //if($_SERVER['REQUEST_URI'] == $SERVER_FOLDER) echo 'navbar-fixed-top'
+        ?>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -62,20 +62,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/login.php'; ?>">About</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/about.php'; ?>">About</a>
+                    </li>                    
+                    <li>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/showcase.php'; ?>">Showcase</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/login.php'; ?>">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/dashboard.php'; ?>">Portfolio</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/dashboard.php'; ?>">Dashboard</a>
                     </li>
                     <li>
                         <?php
                         if (isset($_SESSION['user_id']))
                             echo '<a class="page-scroll" href="' . base_url() . 'pages/logout.php">Logout</a>';
                         else
-                            echo '<a class="page-scroll" href="' . base_url() . 'pages/login.php">Login</a>';
+                            echo '<a class="page-scroll" href="' . base_url() . 'login.php">Login</a>';
                         ?>
                     </li>
                 </ul>
@@ -84,5 +84,3 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-    
