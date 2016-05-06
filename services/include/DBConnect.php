@@ -3,7 +3,7 @@
 /**
  * Create a database connection
  */
-class DbConnect
+class DBConnect
 { 
     private $conn;
  

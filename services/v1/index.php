@@ -10,7 +10,13 @@ $app = new \Slim\Slim();
  
 // User id from db - Global Variable
 $user_id = NULL;
- 
+
+$app->get('/', function() {
+    $app = \Slim\Slim::getInstance();
+    $app->response->setStatus(200);
+    echo "Welcome to Slim based API";
+});
+
 /**
  * Verifying required params posted or not
  */
@@ -129,7 +135,7 @@ $app->post('/login', function() use ($app) {
             $password = $app->request()->post('password');
             $response = array();
  
-            $db = new DbHandler();
+            $db = new DBHandler();
             // check for correct email and password
             if ($db->checkLogin($username, $password))
             {
@@ -139,7 +145,7 @@ $app->post('/login', function() use ($app) {
                 if ($user != NULL)
                 {
                     $response["error"] = false;
-                    $response["userID"] = $user['pk_user_id'];
+                    $response["userID"] = $user['pk_id'];
                     $response['apiKey'] = $user['api_key'];
                     $response['name'] = $user['user_name'];                    
                     $response['email'] = $user['user_email'];
@@ -172,27 +178,34 @@ function authenticate(\Slim\Route $route) {
     $headers = apache_request_headers();
     $response = array();
     $app = \Slim\Slim::getInstance();
- 
-    // Verifying Authorization Header
-    if (isset($headers['Authorization']))
+    
+    //print_r($headers);
+    // There are problems with header and are case-sensitive while they should not be. So please check prior hand.
+    
+    // Verifying Authorization Header    
+    if (isset($headers['authorization']))
     {
-        $db = new DbHandler();
+        $db = new DBHandler();
  
         // get the api key
-        $api_key = $headers['Authorization'];
+        $api_key = $headers['authorization'];
         // validating api key
-        if (!$db->isValidApiKey($api_key)) {
+        if (!$db->isValidApiKey($api_key))
+        {
             // api key is not present in users table
             $response["error"] = true;
             $response["message"] = "Access Denied. Invalid Api key";
             echoRespnse(401, $response);
             $app->stop();
-        } else {
+        }
+        else
+        {
             global $user_id;
             // get user primary key id
             $user = $db->getUserId($api_key);
+           
             if ($user != NULL)
-                $user_id = $user["id"];
+                $user_id = $user["pk_id"];
         }
     } 
     else
@@ -380,14 +393,14 @@ $app->get('/users', 'authenticate', function()
 /**
  * Fetch Designs
  */
-$app->get('/design', 'authenticate', function($user_id)
+$app->get('/design', 'authenticate', function()
           {
               ///global $user_id;
               $response = array();
               $db = new DBHandler();
               
               // fetching all user tasks
-              $result = $db->get_all_designs($user_id);
+              $result = $db->get_all_designs();
               
               $response["error"] = false;
               $response["designs"] = array();
@@ -396,9 +409,10 @@ $app->get('/design', 'authenticate', function($user_id)
               while ($design = $result->fetch_assoc())
               {
                   $tmp = array();
-                  $tmp["id"] = $design["pk_design_id"];
-                  $tmp["design_name"] = $design["design_name"];
-                  $tmp["design_image_path"] = $design["design_image_path"];
+                  $tmp["id"] = $design["pk_id"];
+                  $tmp["name"] = $design["name"];
+                  $tmp["description"] = $design["description"];
+                  $tmp["image_path"] = $design["image_path"];
                   $tmp["status"] = $design["status"];
                   
                   array_push($response["designs"], $tmp);
@@ -410,7 +424,7 @@ $app->get('/design', 'authenticate', function($user_id)
 /**
  * Fetch Designs
  */
-$app->post('/design', 'authenticate',  use ($app)
+$app->post('/design', 'authenticate',  function() use ($app)
            {
                 // check for required params
                 verifyRequiredParams(array('design'));

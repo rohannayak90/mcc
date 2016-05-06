@@ -4,7 +4,7 @@
 
 
 function CallAPI($method, $url, $data = false)
-{
+{        
     $curl = curl_init();
     
     $base_service_url = 'http://localhost:81/mcc/services/v1/';
@@ -34,9 +34,19 @@ function CallAPI($method, $url, $data = false)
 
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    
+    if (isset($_SESSION['api_key']))
+    {
+        $apiKey = $_SESSION['api_key'];//'dde9ae0028ffa09742613dc013a65154';//$_SESSION['api_key']
+        
+        //curl_setopt($curl, CURLOPT_HEADER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+            'authorization: ' . $apiKey
+        ));
+    }
 
     $result = curl_exec($curl);
-
+    ///echo $result;
     curl_close($curl);
 
     return $result;

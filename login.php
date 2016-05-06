@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-$api_handler_url = base_url() . 'services/include/APIHandler.php'; /// Not working by using this
+//$api_handler_url = base_url() . 'services/include/APIHandler.php'; /// Not working by using this
 require_once 'services/include/APIHandler.php';
 
 $message = 'Login';
@@ -77,13 +77,13 @@ else
             else
             {
                 $message = $result;
-                
-                ///echo $result_array->message;
+                /*
+                echo $result_array->message;*/
                 $user_id = $result_array->userID;
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['api_key'] = $result_array->apiKey;
                 $message = 'You are now logged in with userID = ' . $_SESSION['user_id'];
-                header('Location: ' . base_url() . 'pages/dashboard.php');                
+                header('Location: ' . base_url() . 'pages/dashboard.php');
             }
         } 
     }

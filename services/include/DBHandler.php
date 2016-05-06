@@ -11,7 +11,7 @@ class DbHandler {
     private $conn;
  
     function __construct() {
-        require_once dirname(__FILE__) . './DbConnect.php';
+        require_once dirname(__FILE__) . './DBConnect.php';
         // opening db connection
         $db = new DbConnect();
         $this->conn = $db->connect();
@@ -141,7 +141,7 @@ class DbHandler {
     
     public function getUserByUserName($username)
     {
-        $stmt = $this->conn->prepare("SELECT pk_user_id, api_key, user_name, user_email, status, created_on, modified_on FROM tbl_mst_user WHERE login_username = ?");
+        $stmt = $this->conn->prepare("SELECT pk_id, api_key, user_name, user_email, status, created_on, modified_on FROM tbl_mst_user WHERE login_username = ?");
         $stmt->bind_param("s", $username);
        
         if ($stmt->execute())
@@ -179,7 +179,7 @@ class DbHandler {
      */
     public function getUserId($api_key)
     {
-        $stmt = $this->conn->prepare("SELECT id FROM users WHERE api_key = ?");
+        $stmt = $this->conn->prepare("SELECT pk_id FROM tbl_mst_user WHERE api_key = ?");
         $stmt->bind_param("s", $api_key);
         if ($stmt->execute()) {
             $user_id = $stmt->get_result()->fetch_assoc();
@@ -198,7 +198,7 @@ class DbHandler {
      */
     public function isValidApiKey($api_key)
     {
-        $stmt = $this->conn->prepare("SELECT id from users WHERE api_key = ?");
+        $stmt = $this->conn->prepare("SELECT pk_id from tbl_mst_user WHERE api_key = ?");
         $stmt->bind_param("s", $api_key);
         $stmt->execute();
         $stmt->store_result();
@@ -344,10 +344,10 @@ class DbHandler {
      * Fetching all users
      * @param String $user_id id of the user
      */
-    public function get_all_designs($user_id)
+    public function get_all_designs()
     {
         $stmt = $this->conn->prepare("SELECT * FROM tbl_mst_design");        
-        $stmt->bind_param("i", $user_id);
+        //$stmt->bind_param("i", $user_id);
         $stmt->execute();
         $designs = $stmt->get_result();
         $stmt->close();
