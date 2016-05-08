@@ -4,7 +4,6 @@ require_once '../services/include/APIHandler.php';
 ?>
 
 <?php
-$message = '';
 $result = CallAPI('GET', 'design');
 $result_array = json_decode($result);
 $message = $result;
@@ -22,17 +21,19 @@ if ($result_array)
     }
 }
 else
-{
-    
-    $message = 'There is some problem while fetching the data.';
+{    
+    //$message = 'There is some problem while fetching the data.';
 }
 ?>
 
 <section class="bg-secondary">
     <div class="container">
-        <h2 class="text-center">All Your Designs</h2>
-        <a href="design-edit.php" class="btn btn-primary btn-xl">ADD NEW</a>
+        <h2 class="text-center">All Your Designs</h2>        
         <p><?php echo $message; ?></p>
+    </div>
+    <div>
+        <input type="text" name="search" placeholder="Search..." class="form-control">
+        <a href="design-edit.php" class="btn btn-primary btn-xl">ADD NEW</a>
     </div>
     <div id="showcase" class="container">
         <div class="grid">
@@ -49,7 +50,7 @@ else
 								<h2><?php echo $result_array->designs[$counter]->name; ?></h2>
 								<p><?php echo $result_array->designs[$counter]->description; ?></p>
 							</div>
-							<a href="#">View more</a>
+							<a href="design-edit.php?id=<?php echo $result_array->designs[$counter]->id; ?>">View more</a>
 						</figcaption>			
 					</figure>
             

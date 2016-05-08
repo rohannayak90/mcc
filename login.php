@@ -69,21 +69,29 @@ else
             $result = CallAPI('POST', 'login', $data);
 
             $result_array = json_decode($result);
-            if (isset($result_array->error) && $result_array->error == 1)
+            
+            if ($result_array)
             {
-                //die('Error Occured - ' . $result_array->message);
-                $message = $result_array->message;
+                if (isset($result_array->error) && $result_array->error == 1)
+                {
+                    //die('Error Occured - ' . $result_array->message);
+                    $message = $result_array->message;
+                }
+                else
+                {
+                    $message = $result;
+                    /*
+                     echo $result_array->message;*/
+                    $user_id = $result_array->userID;
+                    $_SESSION['user_id'] = $user_id;
+                    $_SESSION['api_key'] = $result_array->apiKey;
+                    $message = 'You are now logged in with userID = ' . $_SESSION['user_id'];
+                    header('Location: ' . base_url() . 'pages/dashboard.php');
+                }
             }
             else
             {
-                $message = $result;
-                /*
-                echo $result_array->message;*/
-                $user_id = $result_array->userID;
-                $_SESSION['user_id'] = $user_id;
-                $_SESSION['api_key'] = $result_array->apiKey;
-                $message = 'You are now logged in with userID = ' . $_SESSION['user_id'];
-                header('Location: ' . base_url() . 'pages/dashboard.php');
+                $message = 'There is some problem while trying to login. Please contact support.';
             }
         } 
     }

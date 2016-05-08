@@ -3,7 +3,9 @@
 <?php
     session_start();
     require_once('inc/basic-details.php');
-    require_once('inc/functions.php');    
+    require_once('inc/functions.php');
+
+    $message = '';
 ?>
 <head>
 

@@ -393,14 +393,15 @@ $app->get('/users', 'authenticate', function()
 /**
  * Fetch Designs
  */
-$app->get('/design', 'authenticate', function()
+$app->get('/design', 'authenticate', function() use ($app)
           {
               ///global $user_id;
               $response = array();
               $db = new DBHandler();
               
+              $designID = $app->request()->get('design_id');
               // fetching all user tasks
-              $result = $db->get_all_designs();
+              $result = $db->getDesign($designID);
               
               $response["error"] = false;
               $response["designs"] = array();
@@ -424,30 +425,42 @@ $app->get('/design', 'authenticate', function()
 /**
  * Fetch Designs
  */
-$app->post('/design', 'authenticate',  function() use ($app)
+$app->post('/design', 'authenticate',  function() use($app)
            {
+               $response["message"] = "Started verification";
                 // check for required params
-                verifyRequiredParams(array('design'));
-
+                verifyRequiredParams(array('design_id', 'design_name', 'design_description', 'image_path'));
+                $response["message"] .= "verification complete";
                 $response = array();
-                $design = $app->request->post('design');
+                $design_id = $app->request->put('design_id');
+                $design_name = $app->request->put('design_name');
+                $design_description = $app->request->put('design_description');
+                $design_image_path = $app->request->put('image_path');
 
-                global $user_id;
                 $db = new DBHandler();
 
-                // creating new task
-                $design_id = $db->insertDesign($user_id, $task);
+                if ($design_id > 0)
+                {
+                    $result = $db->updateDesign($design_id, $design_name, $design_description, $design_image_path); 
+                    //$message = $design_id . ' - ' . $design_name . ' - ' . $result;                   
+                }
+                else
+                {
+                    // creating new task
+                    //$design_id = $db->insertDesign($design_id, $design);
+                    $result = $db->insertDesign($design_name, $design_description, $design_image_path);
+                }
 
-                if ($design_id != NULL)
+                if ($result != NULL)
                 {
                     $response["error"] = false;
                     $response["message"] = "Design created successfully";
-                    $response["design_id"] = $design_id;
+                    $response["result"] = $result;
                 }
                 else
                 {
                     $response["error"] = true;
-                    $response["message"] = "Failed to create design. Please try again";
+                    $response["message"] = $message . "Failed to create design. Please try again";
                 }
                 echoRespnse(201, $response);
            });

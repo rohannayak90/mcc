@@ -7,7 +7,7 @@ function CallAPI($method, $url, $data = false)
 {        
     $curl = curl_init();
     
-    $base_service_url = 'http://localhost:81/mcc/services/v1/';
+    $base_service_url = 'http://localhost:80/mcc/services/v1/';
     $url = $base_service_url . $url;
     
     switch ($method)

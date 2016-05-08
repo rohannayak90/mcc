@@ -7,13 +7,13 @@
  * @author Ravi Tamada
  */
 class DbHandler {
- 
+    
     private $conn;
  
     function __construct() {
         require_once dirname(__FILE__) . './DBConnect.php';
         // opening db connection
-        $db = new DbConnect();
+        $db = new DBConnect();
         $this->conn = $db->connect();
     }
  
@@ -341,12 +341,16 @@ class DbHandler {
     }
     
     /**
-     * Fetching all users
-     * @param String $user_id id of the user
+     * Fetching Design
+     * @param String $design_id id of the design
      */
-    public function get_all_designs()
+    public function getDesign($design_id = 0)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM tbl_mst_design");        
+        $statement = 'SELECT * FROM tbl_mst_design';
+        if ($design_id > 0)
+            $statement .= ' WHERE pk_id = ' . $design_id;
+        
+        $stmt = $this->conn->prepare($statement);                
         //$stmt->bind_param("i", $user_id);
         $stmt->execute();
         $designs = $stmt->get_result();
@@ -362,19 +366,33 @@ class DbHandler {
      */
     public function insertDesign($name, $desc, $image_path)
     {
-        $stmt = $this->conn->prepare("INSERT INTO tbl_mst_design(name, description, image_path) values(?, ?, ?)");
-        $stmt->bind_param("sss", $name, $desc, $image_path);
-        $result = $stmt->execute();
-        $stmt->close();
+        $statement = "INSERT INTO tbl_mst_design(name, description, image_path) values(?, ?, ?)";
+        if ($stmt = $this->conn->prepare($statement))
+        {
+            $stmt->bind_param("sss", $name, $desc, $image_path);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
         return $result;
     }
     
-    public function updateDesign($name, $desc, $image_path)
+    public function updateDesign($id, $name, $desc, $image_path)
     {
-        $stmt = $this->conn->prepare("UPDATE tbl_mst_design(name, description, image_path) values(?, ?, ?)");
-        $stmt->bind_param("sss", $name, $desc, $image_path);
-        $result = $stmt->execute();
-        $stmt->close();
+        $statement = "UPDATE tbl_mst_design SET name = ?, description = ?, image_path = ? WHERE pk_id = ?";
+        if ($stmt = $this->conn->prepare($statement))        
+        {
+            //echo $statement;
+            $stmt->bind_param("sssi", $name, $desc, $image_path, $id);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
+        else
+        {            
+            $error = $this->conn->errno . ' ' . $this->conn->error;
+            $result = $error; // 1054 Unknown column 'foo' in 'field list'
+        }
+        
+        
         return $result;
     }
  
