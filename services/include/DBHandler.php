@@ -339,6 +339,26 @@ class DbHandler {
         $stmt->close();
         return $tasks;
     }
+ 
+    public function getUserModules($user_id)
+    {
+        $statement = "SELECT * FROM tbl_mst_module WHERE pk_id IN (SELECT fk_module_id FROM tbl_map_user_module WHERE fk_user_id = ? AND status = 1) AND status = 1";
+        
+        if ($stmt = $this->conn->prepare($statement))        
+        {
+            //echo $statement;
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+        }
+        else
+        {            
+            $error = $this->conn->errno . ' ' . $this->conn->error;
+            $result = $error; // 1054 Unknown column 'foo' in 'field list'
+        }
+        return $result;
+    }
     
     /**
      * Fetching Design
@@ -346,9 +366,9 @@ class DbHandler {
      */
     public function getDesign($design_id = 0)
     {
-        $statement = 'SELECT * FROM tbl_mst_design';
+        $statement = 'SELECT * FROM tbl_mst_design WHERE status = 1';
         if ($design_id > 0)
-            $statement .= ' WHERE pk_id = ' . $design_id;
+            $statement .= ' AND pk_id = ' . $design_id;
         
         $stmt = $this->conn->prepare($statement);                
         //$stmt->bind_param("i", $user_id);
@@ -395,7 +415,118 @@ class DbHandler {
         
         return $result;
     }
- 
+    
+    /**
+     * Fetching Design
+     * @param String $design_id id of the design
+     */
+    public function getTemplate($template_id = 0)
+    {
+        $statement = 'SELECT * FROM tbl_mst_template WHERE status = 1';
+        if ($template_id > 0)
+            $statement .= ' AND pk_id = ' . $template_id;
+        
+        $stmt = $this->conn->prepare($statement);
+        //$stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $designs = $stmt->get_result();
+        $stmt->close();
+        return $designs;
+    }
+    
+    /**
+     * Function to create a new design
+     * @param String $design_name to be given to the design
+     * @param String $design_desc to be given as the description to the design.
+     * @param String $design_image_path
+     */
+    public function insertTemplate($name, $desc, $image_path)
+    {
+        $statement = "INSERT INTO tbl_mst_template(name, description, image_path) values(?, ?, ?)";
+        if ($stmt = $this->conn->prepare($statement))
+        {
+            $stmt->bind_param("sss", $name, $desc, $image_path);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
+        return $result;
+    }
+    
+    public function updateTemplate($id, $name, $desc, $image_path)
+    {
+        $statement = "UPDATE tbl_mst_template SET name = ?, description = ?, image_path = ? WHERE pk_id = ?";
+        if ($stmt = $this->conn->prepare($statement))        
+        {
+            //echo $statement;
+            $stmt->bind_param("sssi", $name, $desc, $image_path, $id);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
+        else
+        {            
+            $error = $this->conn->errno . ' ' . $this->conn->error;
+            $result = $error; // 1054 Unknown column 'foo' in 'field list'
+        }
+        
+        
+        return $result;
+    }
+    
+    /**
+     * Fetching Design
+     * @param String $design_id id of the design
+     */
+    public function getTheme($theme_id = 0)
+    {
+        $statement = 'SELECT * FROM tbl_mst_theme WHERE status = 1';
+        if ($theme_id > 0)
+            $statement .= ' AND pk_id = ' . $theme_id;
+        
+        $stmt = $this->conn->prepare($statement);                
+        //$stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $designs = $stmt->get_result();
+        $stmt->close();
+        return $designs;
+    }
+    
+    /**
+     * Function to create a new design
+     * @param String $design_name to be given to the design
+     * @param String $design_desc to be given as the description to the design.
+     * @param String $design_image_path
+     */
+    public function insertTheme($name, $desc, $image_path)
+    {
+        $statement = "INSERT INTO tbl_mst_theme(name, description, image_path) values(?, ?, ?)";
+        if ($stmt = $this->conn->prepare($statement))
+        {
+            $stmt->bind_param("sss", $name, $desc, $image_path);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
+        return $result;
+    }
+    
+    public function updateTheme($id, $name, $desc, $image_path)
+    {
+        $statement = "UPDATE tbl_mst_theme SET name = ?, description = ?, image_path = ? WHERE pk_id = ?";
+        if ($stmt = $this->conn->prepare($statement))        
+        {
+            //echo $statement;
+            $stmt->bind_param("sssi", $name, $desc, $image_path, $id);
+            $result = $stmt->execute();
+            $stmt->close();
+        }
+        else
+        {            
+            $error = $this->conn->errno . ' ' . $this->conn->error;
+            $result = $error; // 1054 Unknown column 'foo' in 'field list'
+        }
+        
+        
+        return $result;
+    }
 }
  
 ?>

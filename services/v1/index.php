@@ -344,7 +344,7 @@ $app->put('/tasks/:id', 'authenticate', function($task_id) use($app) {
 $app->delete('/tasks/:id', 'authenticate', function($task_id) use($app) {
             global $user_id;
  
-            $db = new DbHandler();
+            $db = new DBHandler();
             $response = array();
             $result = $db->deleteTask($user_id, $task_id);
             if ($result) {
@@ -369,7 +369,7 @@ $app->get('/users', 'authenticate', function()
           {
             global $user_id;
             $response = array();
-            $db = new DbHandler();
+            $db = new DBHandler();
  
             // fetching all users
             $result = $db->get_all_users($user_id);
@@ -423,7 +423,7 @@ $app->get('/design', 'authenticate', function() use ($app)
           });
  
 /**
- * Fetch Designs
+ * Save Designs
  */
 $app->post('/design', 'authenticate',  function() use($app)
            {
@@ -465,6 +465,193 @@ $app->post('/design', 'authenticate',  function() use($app)
                 echoRespnse(201, $response);
            });
 
+/**
+ * Fetch Templates
+ */
+$app->get('/template', 'authenticate', function() use ($app)
+          {
+              ///global $user_id;
+              $response = array();
+              $db = new DBHandler();
+              
+              $templateID = $app->request()->get('template_id');
+              // fetching all user tasks
+              $result = $db->getTemplate($templateID);
+              
+              $response["error"] = false;
+              $response["templates"] = array();
+              
+              // looping through result and preparing tasks array
+              while ($design = $result->fetch_assoc())
+              {
+                  $tmp = array();
+                  $tmp["id"] = $design["pk_id"];
+                  $tmp["name"] = $design["name"];
+                  $tmp["description"] = $design["description"];
+                  $tmp["image_path"] = $design["image_path"];
+                  $tmp["status"] = $design["status"];
+                  
+                  array_push($response["templates"], $tmp);
+              }
+              
+              echoRespnse(200, $response);
+          });
+ 
+/**
+ * Save Template
+ */
+$app->post('/template', 'authenticate',  function() use($app)
+           {
+               $response["message"] = "Started verification";
+               // check for required params
+               verifyRequiredParams(array('template_id', 'template_name', 'template_description', 'image_path'));
+               $response["message"] .= "verification complete";
+               $response = array();
+               $template_id = $app->request->put('template_id');
+               $template_name = $app->request->put('template_name');
+               $template_description = $app->request->put('template_description');
+               $template_image_path = $app->request->put('image_path');
+
+               $db = new DBHandler();
+
+               if ($template_id > 0)
+               {
+                   $result = $db->updateTemplate($template_id, $templatename, $template_description, $template_image_path); 
+                   //$message = $design_id . ' - ' . $design_name . ' - ' . $result;                   
+               }
+               else
+               {
+                   // creating new task
+                   //$design_id = $db->insertDesign($design_id, $design);
+                   $result = $db->insertTemplate($template_name, $template_description, $template_image_path);
+               }
+
+               if ($result != NULL)
+               {
+                   $response["error"] = false;
+                   $response["message"] = "Design created successfully";
+                   $response["result"] = $result;
+               }
+               else
+               {
+                   $response["error"] = true;
+                   $response["message"] = $message . "Failed to create design. Please try again";
+               }
+               echoRespnse(201, $response);
+           });
+
+/**
+ * Fetch Theme
+ */
+$app->get('/theme', 'authenticate', function() use ($app)
+          {
+              ///global $user_id;
+              $response = array();
+              $db = new DBHandler();
+              
+              $themeID = $app->request()->get('theme_id');
+              // fetching all user tasks
+              $result = $db->getTheme($themeID);
+              
+              $response["error"] = false;
+              $response["themes"] = array();
+              
+              // looping through result and preparing tasks array
+              while ($theme = $result->fetch_assoc())
+              {
+                  $tmp = array();
+                  $tmp["id"] = $theme["pk_id"];
+                  $tmp["name"] = $theme["name"];
+                  $tmp["description"] = $theme["description"];
+                  $tmp["image_path"] = $theme["image_path"];
+                  $tmp["status"] = $theme["status"];
+                  
+                  array_push($response["themes"], $tmp);
+              }
+              
+              echoRespnse(200, $response);
+          });
+ 
+/**
+ * Save Theme
+ */
+$app->post('/theme', 'authenticate',  function() use($app)
+           {
+               $response["message"] = "Started verification";
+                // check for required params
+                verifyRequiredParams(array('theme_id', 'theme_name', 'theme_description', 'image_path'));
+                $response["message"] .= "verification complete";
+                $response = array();
+                $theme_id = $app->request->put('theme_id');
+                $theme_name = $app->request->put('theme_name');
+                $theme_description = $app->request->put('theme_description');
+                $theme_image_path = $app->request->put('image_path');
+
+                $db = new DBHandler();
+
+                if ($theme_id > 0)
+                {
+                    $result = $db->updateTheme($theme_id, $theme_name, $theme_description, $theme_image_path); 
+                    //$message = $design_id . ' - ' . $design_name . ' - ' . $result;                   
+                }
+                else
+                {
+                    // creating new task
+                    //$design_id = $db->insertDesign($design_id, $design);
+                    $result = $db->insertTheme($theme_name, $theme_description, $theme_image_path);
+                }
+
+                if ($result != NULL)
+                {
+                    $response["error"] = false;
+                    $response["message"] = "Design created successfully";
+                    $response["result"] = $result;
+                }
+                else
+                {
+                    $response["error"] = true;
+                    $response["message"] = $message . "Failed to create design. Please try again";
+                }
+                echoRespnse(201, $response);
+           });
+
+$app->get('/map_user_module', 'authenticate', function()
+          {
+              global $user_id;
+              
+              $db = new DBHandler();
+              $result = $db->getUserModules($user_id);
+              $message = $user_id;
+              
+              if ($result != NULL)
+              {
+                  $response["error"] = false;
+                  $response["message"] = "Design created successfully";
+                  $response["user_modules"] = array();
+                  
+                  // looping through result and preparing tasks array
+                  while ($map_item = $result->fetch_assoc())
+                  {
+                      $item = array();
+                      $item["id"] = $map_item["pk_id"];
+                      $item["name"] = $map_item["name"];
+                      $item["description"] = $map_item["description"];
+                      $item["image_path"] = $map_item["image_path"];
+                      $item["fa_icon"] = $map_item["fa_icon"];
+                      $item["link"] = $map_item["link"];
+                      array_push($response["user_modules"], $item);
+                  }
+              }
+              else
+              {
+                  $response["error"] = true;
+                  $response["message"] = $message . " Failed to fetch modules. Please try again";
+              }
+              echoRespnse(201, $response);
+          });
+
 
 $app->run();
+
+
 ?>

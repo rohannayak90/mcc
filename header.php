@@ -70,6 +70,9 @@
                         <a class="page-scroll" href="<?php echo base_url() . 'pages/showcase.php'; ?>">Showcase</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/pricing.php'; ?>">Pricing</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="<?php echo base_url() . 'pages/dashboard.php'; ?>">Dashboard</a>
                     </li>
                     <li>

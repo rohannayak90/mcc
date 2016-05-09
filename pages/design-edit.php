@@ -94,7 +94,7 @@ else
                 
                 $design_name = $result_array->designs[0]->name;
                 $design_description = $result_array->designs[0]->description;
-                $design_image_path = $result_array->designs[0]->image_path;
+                $design_image_path = base_url() . $result_array->designs[0]->image_path;
             }
         }
         else
@@ -112,34 +112,36 @@ else
 ?>
 <section class="bg-secondary">
     <form role="form" action="" method="post" class="login-form" enctype = "multipart/form-data">
-    <div class="container">
-        <h2 class="text-center col-lg-10"><?php echo $page_title; ?></h2>
-        <!--<a href="" class="btn btn-primary col-lg-2">SAVE CHANGES</a>-->
-        <button type="submit" name="save" class="btn">SAVE CHANGES</button>
-    </div>
-    <p><?php echo $message; ?></p>
-    <hr>
-    <div class="container">
-        <div id="form-part" class="col-lg-6">
-            
-                <div class="form-group">
-                    <label class="sr-only" for="form-design-name">Design Name</label>
-                    <input type="text" name="design_name" placeholder="Design Name..." class="form-control" value="<?php echo $design_name; ?>"/>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-design-description">Design Description</label>
-                    <textarea type="text" name="design_description" placeholder="Give the design a description..." class="form-control"><?php echo $design_description ?></textarea>
-                </div>
-            
+        <div class="container">
+            <h2 class="text-center"><?php echo $page_title; ?></h2>                        
         </div>
-        <div id="image-part" class="col-lg-6">
-            <div class="full-width">
-                <input type="file" name="upload" class="btn"/>
-                <input name="design_image_path" value="<?php echo $design_image_path ?>" class="form-control" readonly/>
+        <hr>
+        <div class="container">
+            <!--<a href="" class="btn btn-primary col-lg-2">SAVE CHANGES</a>-->
+            <button type="submit" name="save" class="btn pull-right">SAVE CHANGES</button>
+        </div>
+        <div class="container">
+            <p><?php echo $message; ?></p>
+            <div id="form-part" class="col-lg-6">
+
+                    <div class="form-group">
+                        <label class="sr-only" for="form-design-name">Design Name</label>
+                        <input type="text" name="design_name" placeholder="Design Name..." class="form-control" value="<?php echo $design_name; ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-design-description">Design Description</label>
+                        <textarea type="text" name="design_description" placeholder="Give the design a description..." class="form-control"><?php echo $design_description ?></textarea>
+                    </div>
+
             </div>
-            <img id="image" src="<?php echo $design_image_path ?>"/>
+            <div id="image-part" class="col-lg-6">
+                <div class="full-width">
+                    <input type="file" name="upload"/>
+                    <input name="design_image_path" value="<?php echo $design_image_path ?>" class="form-control" readonly/>
+                </div>
+                <img id="image" src="<?php echo $design_image_path ?>"/>
+            </div>
         </div>
-    </div>
-        </form>
+    </form>
 </section>
 <?php include('../footer.php'); ?>

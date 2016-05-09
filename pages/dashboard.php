@@ -1,8 +1,52 @@
-<?php include('../header.php'); ?>
+<?php
+include('../header.php');
+require_once '../services/include/APIHandler.php';
+?>
+
+<?php
+$result = CallAPI('GET', 'map_user_module');
+$result_array = json_decode($result);
+$message = $result;
+
+if ($result_array)
+{
+    if (isset($result_array->error) && $result_array->error == 1)
+    {
+        $message = $result_array->message;
+    }
+    else
+    {
+        $message = 'Data fetching successful.';
+        //$message = $result_array;
+    }
+}
+else
+{    
+    $message = 'There is some problem while fetching the data. ' . $result;
+}
+?>
 
 <section  class="bg-seco1ndary">
     <div class="container">
+        <p><?php echo $message; ?></p>
+        <?php
+        for ($counter = 0, $count_modules = count($result_array->user_modules); $counter < $count_modules; $counter++)
+        {
+            
+        ?>
         <div class="col-md-3 col-sm-6">
+            <div class="module-block center">
+                <a href="<?php echo base_url() . $result_array->user_modules[$counter]->link; ?>">
+                    <i class="<?php echo $result_array->user_modules[$counter]->fa_icon; ?>" aria-hidden="true"></i>
+                    <h3><?php echo $result_array->user_modules[$counter]->name; ?></h3>
+                    <p><?php echo $result_array->user_modules[$counter]->description; ?></p>
+                </a>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        <!--<div class="col-md-3 col-sm-6">
             <div class="module-block center">
                 <a href="<?php echo base_url() . 'flash/customizer.php' ?>">
                     <i class="fa fa-4x fa-cloud" aria-hidden="true"></i>
@@ -32,7 +76,7 @@
         <div class="col-md-3 col-sm-6">
             <div class="module-block center">
                 <a href="<?php echo base_url() . 'pages/cart.php' ?>">
-                    <!--<img src="../images/pass-icon.png" alt="">-->
+                    <!--<img src="../images/pass-icon.png" alt="">--
                     <i class="fa fa-4x fa-shopping-cart" aria-hidden="true"></i>
                     <h3>Shopping Cart</h3>
                     <p>Update your user account information from here</p>
@@ -65,7 +109,7 @@
                     <p>View your themes and add/edit them here.</p>
                 </a>
             </div>
-        </div>
+        </div>-->
     </div>
 </section>
 
