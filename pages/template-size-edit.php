@@ -5,21 +5,21 @@ require_once '../services/include/APIHandler.php';
 
 $edit_mode = false;
 $data = [];
-$design_id = 0;
-$design_name = '';
-$design_description = '';
-$design_image_path = '';
+$theme_id = 0;
+$theme_name = '';
+$theme_description = '';
+$theme_image_path = '';
 
 if (isset($_GET['id']) && ($_GET['id']) > 0)
 {
-    $design_id = $_GET['id'];
-    $page_title = 'Edit Design';
+    $theme_id = $_GET['id'];
+    $page_title = 'Edit Theme';
     $edit_mode = true;
 }
 else
 {
-    $design_id = 0;
-    $page_title = 'Add Design';
+    $theme_id = 0;
+    $page_title = 'Add Theme';
 }
 
 if (isset($_POST['upload']))
@@ -50,34 +50,34 @@ if (isset($_POST['upload']))
 }
 else if (isset($_POST['save']))
 {
-    //$design_id = $_GET['id'];// Has been set above
-    $design_name = filter_var($_POST['design_name'], FILTER_SANITIZE_STRING);
-    $design_description = filter_var($_POST['design_description'], FILTER_SANITIZE_STRING);
-    $design_image_path = filter_var($_POST['design_image_path'], FILTER_SANITIZE_STRING);
+    //$theme_id = $_GET['id'];// Has been set above
+    $theme_name = filter_var($_POST['theme_name'], FILTER_SANITIZE_STRING);
+    $theme_description = filter_var($_POST['theme_description'], FILTER_SANITIZE_STRING);
+    $theme_image_path = filter_var($_POST['theme_image_path'], FILTER_SANITIZE_STRING);
     
-    if ($design_image_path == '')
+    if ($theme_image_path == '')
     {
         // Set this to something default here.
-        $design_image_path = '../app/images/design/business-card.jpg';
+        $theme_image_path = 'app/images/theme/business-card.jpg';
     }
     
     $data = [];    
-    $data['design_id'] = $design_id;
-    $data['design_name'] = $design_name;
-    $data['design_description'] = $design_description;
-    $data['image_path'] = $design_image_path;
+    $data['theme_id'] = $theme_id;
+    $data['theme_name'] = $theme_name;
+    $data['theme_description'] = $theme_description;
+    $data['image_path'] = $theme_image_path;
     
-    $result = CallAPI('POST', 'design', $data);
+    $result = CallAPI('POST', 'theme', $data);
     $result_array = json_decode($result);
     $message = $result;
 }
 else
 {
-    if ($design_id > 0)
+    if ($theme_id > 0)
     {       
-        $data['design_id'] = $design_id;
+        $data['theme_id'] = $theme_id;
 
-        $result = CallAPI('GET', 'design', $data);
+        $result = CallAPI('GET', 'theme', $data);
         $result_array = json_decode($result);
         $message = $result;
 
@@ -92,9 +92,11 @@ else
                 $message = 'Data fetching successful.';
                 //$message = $result;
                 
-                $design_name = $result_array->designs[0]->name;
-                $design_description = $result_array->designs[0]->description;
-                $design_image_path = base_url() . $result_array->designs[0]->image_path;
+                $theme_name = $result_array->themes[0]->name;
+                $theme_description = $result_array->themes[0]->description;
+                $theme_image_path = $result_array->themes[0]->image_path;
+                
+                $message = $theme_image_path;
             }
         }
         else
@@ -104,7 +106,7 @@ else
     }
     else
     {
-        $message = 'This is a new design.';
+        $message = 'This is a new theme.';
     }
 }
 
@@ -125,21 +127,21 @@ else
             <div id="form-part" class="col-lg-6">
 
                     <div class="form-group">
-                        <label class="sr-only" for="form-design-name">Design Name</label>
-                        <input type="text" name="design_name" placeholder="Design Name..." class="form-control" value="<?php echo $design_name; ?>"/>
+                        <label class="sr-only" for="form-theme-name">Theme Name</label>
+                        <input type="text" name="theme_name" placeholder="Theme Name..." class="form-control" value="<?php echo $theme_name; ?>"/>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="form-design-description">Design Description</label>
-                        <textarea type="text" name="design_description" placeholder="Give the design a description..." class="form-control"><?php echo $design_description ?></textarea>
+                        <label class="sr-only" for="form-theme-description">theme Description</label>
+                        <textarea type="text" name="theme_description" placeholder="Give the theme a description..." class="form-control"><?php echo $theme_description ?></textarea>
                     </div>
 
             </div>
             <div id="image-part" class="col-lg-6">
                 <div class="full-width">
                     <input type="file" name="upload"/>
-                    <input name="design_image_path" value="<?php echo $design_image_path ?>" class="form-control" readonly/>
+                    <input name="theme_image_path" value="<?php echo base_url() . $theme_image_path ?>" class="form-control" readonly/>
                 </div>
-                <img id="image" src="<?php echo $design_image_path ?>"/>
+                <img id="image" src="<?php echo base_url() . $theme_image_path ?>"/>
             </div>
         </div>
     </form>

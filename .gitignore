@@ -54,3 +54,4 @@ Temporary Items
 .settings
 #/services/include
 #/services/v1
+services/include/APIHandler.php
