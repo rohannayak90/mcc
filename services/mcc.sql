@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2016 at 04:14 PM
+-- Generation Time: May 09, 2016 at 04:29 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -62,6 +62,42 @@ CREATE TABLE IF NOT EXISTS `tbl_map_user_design` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_map_user_module`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_map_user_module` (
+  `pk_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `fk_user_id` bigint(20) NOT NULL,
+  `fk_module_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`pk_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `tbl_map_user_module`
+--
+
+INSERT INTO `tbl_map_user_module` (`pk_id`, `fk_user_id`, `fk_module_id`, `status`) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 1),
+(3, 1, 3, 1),
+(4, 1, 4, 1),
+(5, 1, 5, 1),
+(6, 1, 6, 1),
+(7, 1, 7, 1),
+(8, 2, 1, 1),
+(9, 2, 2, 1),
+(10, 2, 3, 1),
+(11, 2, 4, 1),
+(12, 2, 5, 0),
+(13, 2, 6, 0),
+(14, 2, 7, 0),
+(15, 1, 8, 1),
+(16, 2, 8, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_mst_design`
 --
 
@@ -72,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `tbl_mst_design` (
   `image_path` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `tbl_mst_design`
@@ -80,7 +116,67 @@ CREATE TABLE IF NOT EXISTS `tbl_mst_design` (
 
 INSERT INTO `tbl_mst_design` (`pk_id`, `name`, `description`, `image_path`, `status`) VALUES
 (1, 'Business Card', 'This is to print your visiting card.', 'app/images/design/business-card.jpg', 1),
-(2, 'Poster', 'This is a Poster to show up anywhere you want.', 'app/images/design/poster.jpg', 1);
+(2, 'Poster', 'This is a Poster to show up anywhere you want.', 'app/images/design/poster.jpg', 1),
+(3, 'First Desiugn', 'This is the first design via here', 'app/images/design/business-card.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_mst_module`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_mst_module` (
+  `pk_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `image_path` varchar(200) NOT NULL,
+  `fa_icon` varchar(50) NOT NULL,
+  `link` varchar(100) NOT NULL,
+  `sequence` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`pk_id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `tbl_mst_module`
+--
+
+INSERT INTO `tbl_mst_module` (`pk_id`, `name`, `description`, `image_path`, `fa_icon`, `link`, `sequence`, `status`) VALUES
+(1, 'New Order', 'Start a new order.', '', 'fa fa-4x fa-cloud', 'app/flash/customizer.php', 1, 1),
+(2, 'Saved Orders', 'View your saved orders.', '', 'fa fa-4x fa-save', 'pages/saved-orders.php', 2, 1),
+(3, 'Edit Profile', 'Update your user account information from here.', '', 'fa fa-4x fa-edit', 'pages/profile.php', 3, 1),
+(4, 'Shopping Cart', 'View your shopping cart.', '', 'fa fa-4x fa-shopping-cart', 'pages/cart.php', 4, 1),
+(5, 'View Designs', 'View your designs and add/edit them here.', '', 'fa fa-4x fa-cloud', 'pages/designs.php', 5, 1),
+(6, 'View Templates', 'View your templates and add/edit them here.', '', 'fa fa-4x fa-cloud', 'pages/templates.php', 6, 1),
+(7, 'View Themes', 'View your themes and add/edit them here.', '', 'fa fa-4x fa-cloud', 'pages/themes.php', 7, 1),
+(8, 'View Modules', 'View/Edit all the modules from here.', '', 'fa fa-4x fa-cloud', 'pages/modules.php', 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_mst_pricing`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_mst_pricing` (
+  `pk_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `price` decimal(11,2) NOT NULL,
+  `sequence` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`pk_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `tbl_mst_pricing`
+--
+
+INSERT INTO `tbl_mst_pricing` (`pk_id`, `name`, `description`, `price`, `sequence`, `status`) VALUES
+(1, 'Free Plan', 'Great for starters', '0.00', 1, 1),
+(2, 'Single Plan', 'Great for single use', '0.99', 2, 1),
+(3, 'Monthly Plan', 'Great for small companies', '9.99', 3, 1),
+(4, 'Yearly Plan', 'Great for Enterprise', '99.99', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +187,7 @@ INSERT INTO `tbl_mst_design` (`pk_id`, `name`, `description`, `image_path`, `sta
 CREATE TABLE IF NOT EXISTS `tbl_mst_template` (
   `pk_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `description` int(200) NOT NULL,
+  `description` varchar(200) NOT NULL,
   `image_path` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`pk_id`)
@@ -132,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `tbl_mst_user` (
   PRIMARY KEY (`pk_id`),
   UNIQUE KEY `api_key` (`api_key`),
   UNIQUE KEY `user_email` (`user_email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `tbl_mst_user`
