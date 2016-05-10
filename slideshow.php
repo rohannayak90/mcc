@@ -7,7 +7,7 @@
                         <div class="container color-default">
                             <h2>Set Your <br/><strong>DESIGN</strong> APART.</h2>
                             <h5>Create your own designs. Start for free.</h5>
-                            <a href="flash/customizer.php" class="button-1">Get Started</a>
+                            <a href="<?php echo base_url() . 'app/flash/customizer.php'; ?>" class="button-1">Get Started</a>
                         </div>
                         <!--<div class="tagline-wrapper-banner" style="transform: translate(0px, 3.5%);">
                             <h2 class="element-invisible">About canva</h2>

@@ -489,6 +489,8 @@ $app->get('/template_size', 'authenticate', function() use ($app)
         $tmp["id"] = $design["pk_id"];
         $tmp["name"] = $design["name"];
         $tmp["description"] = $design["description"];
+        $tmp["width"] = $design["width"];
+        $tmp["height"] = $design["height"];
         $tmp["image_path"] = $design["image_path"];
         $tmp["status"] = $design["status"];
 
@@ -505,26 +507,32 @@ $app->post('/template_size', 'authenticate',  function() use($app)
 {
     $response["message"] = "Started verification";
     // check for required params
-    verifyRequiredParams(array('template_id', 'template_name', 'template_description', 'image_path'));
+    verifyRequiredParams(array(
+                        'template_size_id',
+                        'template_size_name',
+                        'template_size_description',
+                        'template_size_width',
+                        'template_size_height',
+                        'image_path'
+                    ));
     $response["message"] .= "verification complete";
     $response = array();
-    $template_id = $app->request->put('template_id');
-    $template_name = $app->request->put('template_name');
-    $template_description = $app->request->put('template_description');
-    $template_image_path = $app->request->put('image_path');
+    $id = $app->request->put('template_size_id');
+    $name = $app->request->put('template_size_name');
+    $description = $app->request->put('template_size_description');
+    $width = $app->request->put('template_size_width');
+    $height = $app->request->put('template_size_height');
+    $image_path = $app->request->put('image_path');
 
     $db = new DBHandler();
 
-    if ($template_id > 0)
+    if ($id > 0)
     {
-        $result = $db->updateTemplateSize($template_id, $templatename, $template_description, $template_image_path);
-        //$message = $design_id . ' - ' . $design_name . ' - ' . $result;
+        $result = $db->updateTemplateSize($id, $name, $description, $width, $height, $image_path);
     }
     else
-    {
-        // creating new task
-        //$design_id = $db->insertDesign($design_id, $design);
-        $result = $db->insertTemplateSize($template_name, $template_description, $template_image_path);
+    { 
+        $result = $db->insertTemplateSize($name, $description, $width, $height, $image_path);
     }
 
     if ($result != NULL)
@@ -615,6 +623,42 @@ $app->post('/theme', 'authenticate',  function() use($app)
                 }
                 echoRespnse(201, $response);
            });
+
+$app->get('/module', 'authenticate', function()
+          {
+              global $user_id;
+              
+              $db = new DBHandler();
+              $result = $db->getAllModules();
+              //$message = $user_id;
+              
+              if ($result != NULL)
+              {
+                  $response["error"] = false;
+                  $response["message"] = "Module fetched successfully";
+                  $response["modules"] = array();
+                  
+                  // looping through result and preparing tasks array
+                  while ($map_item = $result->fetch_assoc())
+                  {
+                      $item = array();
+                      $item["id"] = $map_item["pk_id"];
+                      $item["name"] = $map_item["name"];
+                      $item["description"] = $map_item["description"];
+                      $item["image_path"] = $map_item["image_path"];
+                      $item["fa_icon"] = $map_item["fa_icon"];
+                      $item["link"] = $map_item["link"];
+                      
+                      array_push($response["modules"], $item);
+                  }
+              }
+              else
+              {
+                  $response["error"] = true;
+                  $response["message"] = $message . " Failed to fetch modules. Please try again";
+              }
+              echoRespnse(201, $response);
+          });
 
 $app->get('/map_user_module', 'authenticate', function()
           {

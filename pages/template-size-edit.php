@@ -5,21 +5,23 @@ require_once '../services/include/APIHandler.php';
 
 $edit_mode = false;
 $data = [];
-$theme_id = 0;
-$theme_name = '';
-$theme_description = '';
-$theme_image_path = '';
+$template_size_id = 0;
+$template_size_name = '';
+$template_size_description = '';
+$template_size_width = 0;
+$template_size_height = 0;
+$template_size_image_path = '';
 
 if (isset($_GET['id']) && ($_GET['id']) > 0)
 {
-    $theme_id = $_GET['id'];
-    $page_title = 'Edit Theme';
+    $template_size_id = $_GET['id'];
+    $page_title = 'Edit Template Size';
     $edit_mode = true;
 }
 else
 {
-    $theme_id = 0;
-    $page_title = 'Add Theme';
+    $template_size_id = 0;
+    $page_title = 'Add Template Size';
 }
 
 if (isset($_POST['upload']))
@@ -50,34 +52,38 @@ if (isset($_POST['upload']))
 }
 else if (isset($_POST['save']))
 {
-    //$theme_id = $_GET['id'];// Has been set above
-    $theme_name = filter_var($_POST['theme_name'], FILTER_SANITIZE_STRING);
-    $theme_description = filter_var($_POST['theme_description'], FILTER_SANITIZE_STRING);
-    $theme_image_path = filter_var($_POST['theme_image_path'], FILTER_SANITIZE_STRING);
+    //$template_size_id = $_GET['id'];// Has been set above
+    $template_size_name = filter_var($_POST['template_size_name'], FILTER_SANITIZE_STRING);
+    $template_size_description = filter_var($_POST['template_size_description'], FILTER_SANITIZE_STRING);
+    $template_size_width = $_POST['template_size_width'];
+    $template_size_height = $_POST['template_size_height'];
+    $template_size_image_path = filter_var($_POST['template_size_image_path'], FILTER_SANITIZE_STRING);
     
-    if ($theme_image_path == '')
+    if ($template_size_image_path == '')
     {
         // Set this to something default here.
-        $theme_image_path = 'app/images/theme/business-card.jpg';
+        $template_size_image_path = 'app/images/theme/business-card.jpg';
     }
     
     $data = [];    
-    $data['theme_id'] = $theme_id;
-    $data['theme_name'] = $theme_name;
-    $data['theme_description'] = $theme_description;
-    $data['image_path'] = $theme_image_path;
+    $data['template_size_id'] = $template_size_id;
+    $data['template_size_name'] = $template_size_name;
+    $data['template_size_description'] = $template_size_description;
+    $data['template_size_width'] = $template_size_width;
+    $data['template_size_height'] = $template_size_height;
+    $data['image_path'] = $template_size_image_path;
     
-    $result = CallAPI('POST', 'theme', $data);
+    $result = CallAPI('POST', 'template_size', $data);
     $result_array = json_decode($result);
     $message = $result;
 }
 else
 {
-    if ($theme_id > 0)
+    if ($template_size_id > 0)
     {       
-        $data['theme_id'] = $theme_id;
+        $data['template_size_id'] = $template_size_id;
 
-        $result = CallAPI('GET', 'theme', $data);
+        $result = CallAPI('GET', 'template_size', $data);
         $result_array = json_decode($result);
         $message = $result;
 
@@ -92,11 +98,11 @@ else
                 $message = 'Data fetching successful.';
                 //$message = $result;
                 
-                $theme_name = $result_array->themes[0]->name;
-                $theme_description = $result_array->themes[0]->description;
-                $theme_image_path = $result_array->themes[0]->image_path;
+                $template_size_name = $result_array->themes[0]->name;
+                $template_size_description = $result_array->themes[0]->description;
+                $template_size_image_path = $result_array->themes[0]->image_path;
                 
-                $message = $theme_image_path;
+                $message = $template_size_image_path;
             }
         }
         else
@@ -125,23 +131,29 @@ else
         <div class="container">
             <p><?php echo $message; ?></p>
             <div id="form-part" class="col-lg-6">
-
-                    <div class="form-group">
-                        <label class="sr-only" for="form-theme-name">Theme Name</label>
-                        <input type="text" name="theme_name" placeholder="Theme Name..." class="form-control" value="<?php echo $theme_name; ?>"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="form-theme-description">theme Description</label>
-                        <textarea type="text" name="theme_description" placeholder="Give the theme a description..." class="form-control"><?php echo $theme_description ?></textarea>
-                    </div>
-
+                <div class="form-group">
+                    <label class="sr-only" for="form-template-size-name">Template Size Name</label>
+                    <input type="text" name="template_size_name" placeholder="Template Size Name..." class="form-control" value="<?php echo $template_size_name; ?>"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="form-template-size-description">Template Size Description</label>
+                    <textarea type="text" name="template_size_description" placeholder="Give the template size a description..." class="form-control"><?php echo $template_size_description ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="form-template-size-width">Template Size Width</label>
+                    <input type="number" name="template_size_width" placeholder="Give the theme a description..." class="form-control" value="<?php echo $template_size_width; ?>"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="form-template-size-height">Template Size Height</label>
+                    <input type="number" name="template_size_height" placeholder="Give the theme a description..." class="form-control" value="<?php echo $template_size_height; ?>"/>
+                </div>
             </div>
             <div id="image-part" class="col-lg-6">
                 <div class="full-width">
                     <input type="file" name="upload"/>
-                    <input name="theme_image_path" value="<?php echo base_url() . $theme_image_path ?>" class="form-control" readonly/>
+                    <input name="template_size_image_path" value="<?php echo base_url() . $template_size_image_path ?>" class="form-control" readonly/>
                 </div>
-                <img id="image" src="<?php echo base_url() . $theme_image_path ?>"/>
+                <img id="image" src="<?php echo base_url() . $template_size_image_path ?>"/>
             </div>
         </div>
     </form>

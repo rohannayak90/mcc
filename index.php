@@ -17,7 +17,7 @@
         $style_with_header_background = 'background-image: url(' . base_url() . 'images/introduction.png)';
         $banner_header = 'Set Your <br/><strong>DESIGN</strong> APART.';
         $description = 'Create your own designs. Start for free.';
-        $link = base_url() . 'flash/customizer.php';
+        $link = base_url() . 'app/flash/customizer.php';
         $link_text = 'GET STARTED';
     }
     
@@ -50,7 +50,7 @@
                     <p class="text-faded">
                         Start designing anything you want, as we have everything you will need at your finger tips. So just let the magic happen.
                     </p>
-                    <a href="javascript:void(0)" class="btn btn-default btn-xl">Get Started!</a>
+                    <a href="<?php echo base_url() . 'app/flash/customizer.php'; ?>" class="btn btn-default btn-xl">Get Started!</a>
                 </div>
             </div>
         </div>
@@ -213,7 +213,7 @@
                     <br>
                     Get started now. Check out for free.
                 </p>
-                <a href="javascript:void(0)" class="btn btn-primary btn-xl wow tada">Start Now!</a>
+                <a href="<?php echo base_url() . 'app/flash/customizer.php'; ?>" class="btn btn-primary btn-xl wow tada">Start Now!</a>
             </div>
         </div>
     </section>

@@ -26,20 +26,20 @@ else
 }
 ?>
 
-<section  class="bg-seco1ndary">
+<section  class="bg-secondary">
     <div class="container">
         <p><?php echo $message; ?></p>
         <?php
         for ($counter = 0, $count_modules = count($result_array->user_modules); $counter < $count_modules; $counter++)
         {
-            
+            $user_module = $result_array->user_modules[$counter];
         ?>
         <div class="col-md-3 col-sm-6">
             <div class="module-block center">
-                <a href="<?php echo base_url() . $result_array->user_modules[$counter]->link; ?>">
-                    <i class="<?php echo $result_array->user_modules[$counter]->fa_icon; ?>" aria-hidden="true"></i>
-                    <h3><?php echo $result_array->user_modules[$counter]->name; ?></h3>
-                    <p><?php echo $result_array->user_modules[$counter]->description; ?></p>
+                <a href="<?php echo base_url() . $user_module->link; ?>">
+                    <i class="<?php echo $user_module->fa_icon; ?>" aria-hidden="true"></i>
+                    <h3><?php echo $user_module->name; ?></h3>
+                    <p><?php echo $user_module->description; ?></p>
                 </a>
             </div>
         </div>

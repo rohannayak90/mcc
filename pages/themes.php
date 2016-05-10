@@ -17,7 +17,7 @@ if ($result_array)
     else
     {
         $message = 'Data fetching successful.';
-        //$message = $result_array;
+        //$message = $result;
     }
 }
 else
@@ -62,3 +62,5 @@ else
             </div>
     </div>
 </section>
+
+<?php include('../footer.php'); ?>

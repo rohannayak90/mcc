@@ -339,6 +339,26 @@ class DbHandler {
         $stmt->close();
         return $tasks;
     }
+    
+    public function getAllModules()
+    {
+        $statement = "SELECT * FROM tbl_mst_module WHERE status = 1";
+        
+        if ($stmt = $this->conn->prepare($statement))        
+        {
+            //echo $statement;
+            //$stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+        }
+        else
+        {            
+            $error = $this->conn->errno . ' ' . $this->conn->error;
+            $result = $error; // 1054 Unknown column 'foo' in 'field list'
+        }
+        return $result;
+    }
  
     public function getUserModules($user_id)
     {
@@ -440,25 +460,30 @@ class DbHandler {
      * @param String $design_desc to be given as the description to the design.
      * @param String $design_image_path
      */
-    public function insertTemplateSize($name, $desc, $image_path)
+    public function insertTemplateSize($name, $desc, $width, $height, $image_path)
     {
-        $statement = "INSERT INTO tbl_mst_template_size(name, description, image_path) values(?, ?, ?)";
+        $statement = "INSERT INTO tbl_mst_template_size(name, description, width, height, image_path) values(?, ?, ?, ?, ?)";
         if ($stmt = $this->conn->prepare($statement))
         {
-            $stmt->bind_param("sss", $name, $desc, $image_path);
+            $stmt->bind_param("ssiis", $name, $desc, $width, $height, $image_path);
             $result = $stmt->execute();
             $stmt->close();
+        }
+        else
+        {
+            $error = $this->conn->errno . ' ' . $this->conn->error;
+            $result = $error; // 1054 Unknown column 'foo' in 'field list'
         }
         return $result;
     }
     
-    public function updateTemplateSize($id, $name, $desc, $image_path)
+    public function updateTemplateSize($id, $name, $desc, $width, $height, $image_path)
     {
-        $statement = "UPDATE tbl_mst_template_size SET name = ?, description = ?, image_path = ? WHERE pk_id = ?";
+        $statement = "UPDATE tbl_mst_template_size SET name = ?, description = ?, width = ?, height = ?, image_path = ? WHERE pk_id = ?";
         if ($stmt = $this->conn->prepare($statement))
         {
             //echo $statement;
-            $stmt->bind_param("sssi", $name, $desc, $image_path, $id);
+            $stmt->bind_param("ssiisi", $name, $desc, $width, $height, $image_path, $id);
             $result = $stmt->execute();
             $stmt->close();
         }

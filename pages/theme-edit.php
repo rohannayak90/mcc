@@ -58,7 +58,7 @@ else if (isset($_POST['save']))
     if ($theme_image_path == '')
     {
         // Set this to something default here.
-        $theme_image_path = 'app/images/theme/business-card.jpg';
+        $theme_image_path = 'app/images/templates/business-card.jpg';
     }
     
     $data = [];    
@@ -139,7 +139,7 @@ else
             <div id="image-part" class="col-lg-6">
                 <div class="full-width">
                     <input type="file" name="upload"/>
-                    <input name="theme_image_path" value="<?php echo base_url() . $theme_image_path ?>" class="form-control" readonly/>
+                    <input name="theme_image_path" value="<?php $theme_image_path ?>" class="form-control" readonly/>
                 </div>
                 <img id="image" src="<?php echo base_url() . $theme_image_path ?>"/>
             </div>
