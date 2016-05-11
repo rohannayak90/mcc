@@ -64,23 +64,23 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/about.php'; ?>">About</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/about'; ?>">About</a>
                     </li>                    
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/showcase.php'; ?>">Showcase</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/showcase'; ?>">Showcase</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/pricing.php'; ?>">Pricing</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/pricing'; ?>">Pricing</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url() . 'pages/dashboard.php'; ?>">Dashboard</a>
+                        <a class="page-scroll" href="<?php echo base_url() . 'pages/dashboard'; ?>">Dashboard</a>
                     </li>
                     <li>
                         <?php
                         if (isset($_SESSION['user_id']))
-                            echo '<a class="page-scroll" href="' . base_url() . 'pages/logout.php">Logout</a>';
+                            echo '<a class="page-scroll" href="' . base_url() . 'pages/logout">Logout</a>';
                         else
-                            echo '<a class="page-scroll" href="' . base_url() . 'login.php">Login</a>';
+                            echo '<a class="page-scroll" href="' . base_url() . 'login">Login</a>';
                         ?>
                     </li>
                 </ul>

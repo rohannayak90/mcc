@@ -12,10 +12,10 @@
                 <nav class="navbar-default">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a class="page-scroll" href="javascript:void(0)">Terms of Service</a>
+                            <a class="page-scroll" href="<?php echo base_url() . 'pages/terms-of-service'; ?>">Terms of Service</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="javascript:void(0)">Privacy Policy</a>
+                            <a class="page-scroll" href="<?php echo base_url() . 'pages/privacy-policy'; ?>">Privacy Policy</a>
                         </li>
                     </ul>
                 </nav>

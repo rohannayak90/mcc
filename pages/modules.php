@@ -1,5 +1,5 @@
 <?php
-include('../header.php');
+include('../header');
 require_once '../services/include/APIHandler';
 ?>
 
