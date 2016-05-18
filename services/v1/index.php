@@ -16,6 +16,12 @@ $app->get('/', function() {
     $app->response->setStatus(200);
     echo "Welcome to Slim based API";
 });
+/*
+$app->get('/template', function() {
+    $app = \Slim\Slim::getInstance();
+    $app->response->setStatus(200);
+    echo "HERE to Slim based API";
+});*/
 
 /**
  * Verifying required params posted or not
@@ -393,8 +399,10 @@ $app->get('/users', 'authenticate', function()
 /**
  * Fetch Templates
  */
-$app->get('/template', 'authenticate', function() use ($app)
+$app->get('/template', function()//'authenticate', function() use ($app)
           {
+              //echo "HERE to Slim based API";
+              
               ///global $user_id;
               $response = array();
               $db = new DBHandler();
