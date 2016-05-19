@@ -2,10 +2,11 @@
 <html lang="en">
 <?php
     session_start();
-    require_once('inc/basic-details.php');
+    require_once('inc/Constants.php');
     require_once('inc/functions.php');
 
     $message = '';
+    $page_title = '';
 ?>
 <head>
 

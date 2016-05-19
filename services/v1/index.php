@@ -184,17 +184,25 @@ function authenticate(\Slim\Route $route) {
     $headers = apache_request_headers();
     $response = array();
     $app = \Slim\Slim::getInstance();
+    $authorization_header_set = true;
+    $api_key = '';
     
     //print_r($headers);
     // There are problems with header and are case-sensitive while they should not be. So please check prior hand.
+    if (isset($headers['Authorization']))
+        $api_key = $headers['Authorization'];
+    else if (isset($headers['authorization']))
+        $api_key = $headers['authorization'];
+    else
+        $authorization_header_set = false;
     
     // Verifying Authorization Header    
-    if (isset($headers['authorization']))
+    if ($authorization_header_set)
     {
         $db = new DBHandler();
  
         // get the api key
-        $api_key = $headers['authorization'];
+        //$api_key = $headers['Authorization'];
         // validating api key
         if (!$db->isValidApiKey($api_key))
         {
@@ -218,7 +226,12 @@ function authenticate(\Slim\Route $route) {
     {
         // api key is missing in header
         $response["error"] = true;
-        $response["message"] = "API key is misssing";
+        $response["message"] = "API key is misssing" . implode(", ", array_map(
+            function ($v, $k) { return sprintf("%s='%s'", $k, $v); },
+            $headers,
+            array_keys($headers)
+        ));
+        
         echoRespnse(400, $response);
         $app->stop();
     }
@@ -399,15 +412,12 @@ $app->get('/users', 'authenticate', function()
 /**
  * Fetch Templates
  */
-$app->get('/template', function()//'authenticate', function() use ($app)
+$app->post('/get_template', 'authenticate', function() use($app)
           {
-              //echo "HERE to Slim based API";
-              
-              ///global $user_id;
               $response = array();
               $db = new DBHandler();
               
-              $templateID = $app->request()->get('template_id');
+              $templateID = $app->request()->post('template_id');
               // fetching all user tasks
               $result = $db->getTemplate($templateID);
               
@@ -429,11 +439,11 @@ $app->get('/template', function()//'authenticate', function() use ($app)
               
               echoRespnse(200, $response);
           });
- 
+
 /**
  * Save Template
  */
-$app->post('/template', 'authenticate',  function() use($app)
+$app->post('/post_template', 'authenticate', function() use($app)
            {
                $response["message"] = "Started verification";
                // check for required params

@@ -3,12 +3,6 @@
                 <div id="footer-info">
                     <p>Copyright 2016 Creative Customizer.</p>                   
                 </div>
-                <!--<div id="footer-menu">
-                    <span>
-                        <a href="javascript:void(0)">Terms of Service</a>
-                        <a href="javascript:void(0)">Privacy Policy</a>
-                    </span>
-                </div>-->
                 <nav class="navbar-default">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -27,5 +21,12 @@
         <script src="<?php echo base_url() . 'js/wow.min.js'?>"></script>
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url() . 'js/main.js'?>"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-Y to site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     </body>
 </html>

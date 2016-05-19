@@ -11,13 +11,13 @@
     $link_text = '';
     $style_with_header_background = '';
     
-    if ($_SERVER['REQUEST_URI'] == $SERVER_FOLDER)
+    if ($_SERVER['REQUEST_URI'] == Constants::SERVER_FOLDER)
     {
         $show_header = true;
         $style_with_header_background = 'background-image: url(' . base_url() . 'images/introduction.png)';
         $banner_header = 'Set Your <br/><strong>DESIGN</strong> APART.';
         $description = 'Create your own designs. Start for free.';
-        $link = base_url() . 'app/flash/customizer.php';
+        $link = base_url() . 'app/html5/';//'app/flash/customizer.php';
         $link_text = 'GET STARTED';
     }
     

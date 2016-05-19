@@ -2,13 +2,14 @@
 // Method: POST, PUT, GET etc
 // Data: array("param" => "value") ==> index.php?param=value
 
+//require_once('../../inc/Constants.php');
+//require_once('../config.php');
 
 function CallAPI($method, $url, $data = false)
 {        
     $curl = curl_init();
     
-    $base_service_url = 'http://localhost:81/m/mcc/services/v1/';
-    $url = $base_service_url . $url;
+    $url = base_url() . 'services/v1/' . $url; // $result = $url;
     
     switch ($method)
     {

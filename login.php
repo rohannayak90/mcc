@@ -91,7 +91,7 @@ else
             }
             else
             {
-                $message = 'There is some problem while trying to login. Please contact support.';
+                $message = $result;//'There is some problem while trying to login. Please contact support.';
             }
         } 
     }

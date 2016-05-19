@@ -1,5 +1,9 @@
 <?php
-$SERVER_FOLDER = '/mcc/';
+//$page_title = '';
 
-$page_title = ''
+//class Constants
+{
+    //const $SERVER_FOLDER = '/m/mcc/';
+}
+$SERVER_FOLDER = '/m/mcc/';
 ?>

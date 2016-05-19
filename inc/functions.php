@@ -7,7 +7,7 @@ if (!function_exists('base_url'))
         /// 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $server_folder /// Most basic method
         if (isset($_SERVER['HTTP_HOST']))
         {
-            $server_folder = "/mcc/";
+            $server_folder = "/m/mcc/";
             
             $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
             $hostname = $_SERVER['HTTP_HOST'];
@@ -18,7 +18,7 @@ if (!function_exists('base_url'))
 
             $tmplt = $atRoot ? ($atCore ? "%s://%s/%s/" : "%s://%s/") : ($atCore ? "%s://%s/%s/" : "%s://%s%s");
             $end = $atRoot ? ($atCore ? $core : $hostname) : ($atCore ? $core : $dir);
-            $base_url = sprintf( $tmplt, $http, $hostname, $server_folder, $end );
+            $base_url = sprintf( $tmplt, $http, $hostname, Constants::SERVER_FOLDER, $end );
         }
         else
             $base_url = 'http://localhost/';
