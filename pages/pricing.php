@@ -1,4 +1,12 @@
 <?php include('../header.php'); ?>
+<section class="bg-primary">
+    <h1>Our Simple Pricing Plans</h1>
+    <p>
+        <span>We have kept our pricing</span>
+        <br>
+        <span>as simple as possible.</span>
+    </p>
+</section>
 <section class="bg-secondary">
     <div class="container">
         

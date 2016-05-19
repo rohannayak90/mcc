@@ -1,7 +1,10 @@
-<?php include('../header.php'); ?>
-<section class="bg-secondary">
-    <div class="container">
-        <h2 class="text-center">Browse Through Our Recent Creations</h2>
-    </div>
+<?php
+$page_title = 'Showcase';
+include('../header.php');
+?>
+
+<section class="bg-primary">
+    <h1>Recent Masterpieces</h1>
 </section>
+
 <?php include('../footer.php'); ?>

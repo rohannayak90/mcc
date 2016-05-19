@@ -4,7 +4,7 @@ require_once '../services/include/APIHandler.php';
 ?>
 
 <?php
-$result = CallAPI('GET', 'map_user_module');
+$result = CallAPI('POST', 'get_map_user_module');
 $result_array = json_decode($result);
 $message = $result;
 
@@ -26,7 +26,10 @@ else
 }
 ?>
 
-<section  class="bg-secondary">
+<section class="bg-primary">
+    <h2>Your Dashboard</h2>
+</section>
+<section class="bg-secondary">
     <div class="container">
         <p><?php echo $message; ?></p>
         <?php

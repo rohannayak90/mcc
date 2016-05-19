@@ -40,7 +40,7 @@ class DbHandler {
             $api_key = $this->generateApiKey();
  
             // insert query
-            $stmt = $this->conn->prepare("INSERT INTO tbl_mst_user(api_key, user_name, user_email, status, login_username, login_password) values(?, ?, ?, 1, ?, ?)");
+            $stmt = $this->conn->prepare("INSERT INTO tbl_mst_user(api_key, user_name, user_email, login_username, login_password, status) values(?, ?, ?, ?, ?, 0)");
             $stmt->bind_param("sssss", $api_key, $name, $email, $username, $password_hash);
  
             $result = $stmt->execute();
@@ -112,7 +112,7 @@ class DbHandler {
      */
     private function isUserExists($email)
     {
-        $stmt = $this->conn->prepare("SELECT pk_user_id FROM tbl_mst_user WHERE user_email = ?");
+        $stmt = $this->conn->prepare("SELECT pk_id FROM tbl_mst_user WHERE user_email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();

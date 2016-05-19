@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+    // Set the error reporting level
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+    
     session_start();
-    require_once('inc/Constants.php');
+    require_once('inc/constants.inc.php');
     require_once('inc/functions.php');
 
     $message = '';
-    $page_title = '';
+    
+    if (isset($page_title) == false)
+        $page_title = '';    
 ?>
 <head>
 

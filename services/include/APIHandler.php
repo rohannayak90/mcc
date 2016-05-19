@@ -6,10 +6,16 @@
 //require_once('../config.php');
 
 function CallAPI($method, $url, $data = false)
-{        
+{
     $curl = curl_init();
     
     $url = base_url() . 'services/v1/' . $url; // $result = $url;
+    
+    if ($data == null)
+    {
+        $data = [];
+        $data['head'] = 'MurariM';
+    }
     
     switch ($method)
     {
@@ -38,7 +44,7 @@ function CallAPI($method, $url, $data = false)
     
     if (isset($_SESSION['api_key']))
     {
-        $apiKey = $_SESSION['api_key'];//'dde9ae0028ffa09742613dc013a65154';//$_SESSION['api_key']
+        $apiKey = $_SESSION['api_key'];//'dde9ae0028ffa09742613dc013a65154';
         
         //curl_setopt($curl, CURLOPT_HEADER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array(

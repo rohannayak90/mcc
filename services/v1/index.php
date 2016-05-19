@@ -103,7 +103,7 @@ $app->post('/register', function() use ($app) {
             $username = $app->request->post('username');
             $password = $app->request->post('password');
     
-            ///echoRespnse(200, $user_first_name);
+            //echoRespnse(200, $email);
  
             // validating email address
             validateEmail($email);
@@ -678,7 +678,7 @@ $app->get('/module', 'authenticate', function()
               echoRespnse(201, $response);
           });
 
-$app->get('/map_user_module', 'authenticate', function()
+$app->post('/get_map_user_module', 'authenticate', function()
           {
               global $user_id;
               

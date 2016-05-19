@@ -1,10 +1,16 @@
-<?php 
+<?php
+
+$page_title = 'Templates';
 include('../header.php');
-require_once '../services/include/APIHandler.php';
+require_once('../services/include/APIHandler.php');
 ?>
 
 <?php
-$result = CallAPI('GET', 'template');
+
+$data = [];    
+$data['template_id'] = 0;
+
+$result = CallAPI('POST', 'get_template', $data);
 $result_array = json_decode($result);
 $message = $result;
 

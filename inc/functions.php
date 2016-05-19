@@ -18,7 +18,7 @@ if (!function_exists('base_url'))
 
             $tmplt = $atRoot ? ($atCore ? "%s://%s/%s/" : "%s://%s/") : ($atCore ? "%s://%s/%s/" : "%s://%s%s");
             $end = $atRoot ? ($atCore ? $core : $hostname) : ($atCore ? $core : $dir);
-            $base_url = sprintf( $tmplt, $http, $hostname, Constants::SERVER_FOLDER, $end );
+            $base_url = sprintf( $tmplt, $http, $hostname, SERVER_FOLDER, $end );
         }
         else
             $base_url = 'http://localhost/';

@@ -15,12 +15,17 @@ else
     if (isset($_POST['register']))
     {
         $message = 'Register';
-        /*** if we are here the data is valid and we can insert it into database ***/
-        $name = filter_var($_POST['form_user_name'], FILTER_SANITIZE_STRING);        
-        $email = filter_var($_POST['form_email_id'], FILTER_SANITIZE_STRING);
-        $login_username = filter_var($_POST['form_email_id'], FILTER_SANITIZE_STRING);
-        $login_password = filter_var($_POST['form_password'], FILTER_SANITIZE_STRING);
+        include_once('../inc/class.user.inc.php');
+        $user = new User();
         
+        /*** if we are here the data is valid and we can insert it into database ***/
+        $user->name = $name = filter_var($_POST['form_user_name'], FILTER_SANITIZE_STRING);        
+        $user->email = $email = filter_var($_POST['form_email_id'], FILTER_SANITIZE_STRING);
+        $user->login_username = $login_username = filter_var($_POST['form_email_id'], FILTER_SANITIZE_STRING);
+        $user->login_password = $login_password = filter_var($_POST['form_password'], FILTER_SANITIZE_STRING);
+        
+        $message = $user->createAccount();
+        /*
         $data = [];
         $data['name'] = $name;
         $data['email'] = $email;
@@ -40,7 +45,7 @@ else
             $message = $result;
             //echo $result_array->message;
             header('Location: ' . base_url() . 'pages/dashboard.php');
-        }
+        }*/
     }
     else
     {
